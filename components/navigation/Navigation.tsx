@@ -1,5 +1,6 @@
 import styles from "./Navigation.module.scss";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 
 const menuList = [
   {
@@ -27,35 +28,26 @@ const menuList = [
 const Navigation = () => {
   const [activePoint, setActivePoint] = useState("");
   const [bgPos, setBgPos] = useState(0);
-
-  const activeBg = useRef();
-  const itemEls = useRef({});
-
-  const setActiveMenuPoint = (name: string, idx: number | null) => {
-    setActivePoint(name);
-    if (idx || idx === 0)
-      setBgPos(itemEls.current[idx].getBoundingClientRect().top - 10);
-  };
+  const [bgHeight, setBgHeight] = useState(0);
 
   return (
     <div className={styles.navigation}>
       {menuList.map((item, idx) => (
-        <div
+        <Link
           className={`${styles.navigationItem} ${
             item.label === activePoint ? styles.active : ""
           }`}
           key={item.label}
-          onMouseEnter={() => setActiveMenuPoint(item.label, idx)}
-          onMouseLeave={() => setActiveMenuPoint("", null)}
-          ref={(element) => (itemEls.current[idx] = element)}
+          href={item.link}
         >
           {item.label}
-        </div>
+        </Link>
       ))}
       <div
-        ref={activeBg}
-        className={`${styles.activeBackground} ${activePoint ? styles.visible : ''}`}
-        style={{ transform: `translateY(${bgPos}px)` }}
+        className={`${styles.activeBackground} ${
+          activePoint ? styles.visible : ""
+        }`}
+        style={{ transform: `translateY(${bgPos}px)`, height: `${bgHeight}px` }}
       ></div>
     </div>
   );

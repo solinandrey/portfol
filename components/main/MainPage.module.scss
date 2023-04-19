@@ -1,0 +1,15 @@
+.main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.greeting {
+  color: $black;
+  @include interNar;
+  font-size: 5rem;
+  line-height: 1;
+  text-transform: lowercase;
+  padding-left: 1.75rem;
+}

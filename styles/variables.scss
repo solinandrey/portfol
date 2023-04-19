@@ -5,6 +5,11 @@ $white: #fff;
 $paddingEdge: 1.6rem;
 $bebas: 'Bebas';
 
+@mixin interNar {
+  font-family: "Inter";
+  font-weight: 100;
+}
+
 :export {
   blackColor: $black;
 }
