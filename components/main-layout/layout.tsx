@@ -2,7 +2,7 @@ import styles from './Layout.module.scss';
 
 import Navigation from '../navigation/Navigation';
 
-export default function Layout({ children }) {
+export default function Layout({ children }: any) {
   return (
     <div className={styles.mainLayout}>
       <main className={styles.leftSide}>{children}</main>
