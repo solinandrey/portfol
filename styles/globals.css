@@ -8,6 +8,10 @@ body {
     font-size: 1vw;
 }
 
+html {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;

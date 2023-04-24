@@ -1,4 +1,5 @@
 import styles from "./MainPage.module.scss";
+import ProjectsBlock from "@components/projects-block";
 
 const MainPage = () => {
   return (

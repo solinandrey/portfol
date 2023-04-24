@@ -1,0 +1,11 @@
+.tag {
+  color: $black;
+  border: 1px solid $black;
+  padding: 0.5rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.7rem;
+
+  &:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+}

@@ -4,7 +4,9 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import "@fontsource/inter/200.css";
 import "@fontsource/inter/300.css";
+import "@fontsource/inter/500.css";
 import Cursor from "../components/cursor";
+import Navigation from "@components/navigation";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // const { global } = pageProps;

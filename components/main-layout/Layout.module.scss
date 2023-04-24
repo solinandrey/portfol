@@ -5,17 +5,21 @@
   min-height: 50rem;
   width: 100vw;
   background: #fff;
-  padding: $paddingEdge;
 }
 
 .leftSide {
   width: 75vw;
   height: 100%;
+  max-height: 100vh;
+  overflow: scroll;
+  padding: $paddingEdge 0 $paddingEdge $paddingEdge;
+  
 }
 
 .rightSide {
   width: 25vw;
   height: 100%;
+  padding: $paddingEdge $paddingEdge $paddingEdge 0;
 }
 
 .rightTop {

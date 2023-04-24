@@ -1,0 +1,40 @@
+.project {
+  position: relative;
+  color: $black;
+
+  &:not(:first-child) {
+    margin-top: 5rem;
+  }
+}
+
+.text {}
+
+.name {
+  font-size: 7.5rem;
+  font-weight: 500;
+  line-height: 0.8;
+  padding-left: 2rem;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.descriptionText {
+  font-size: 1.5rem;
+  font-weight: 200;
+  padding-left: 2rem;
+}
+
+.index {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tags {
+  display: flex;
+  margin-left: 5rem;
+}
