@@ -1,12 +1,30 @@
 import styles from "./Projects.module.scss";
 import ProjectItem from "@components/project-item";
+import Popup from "@components/popup";
 import { projects } from "@content/index";
+import { useState } from "react";
 
 const ProjectsPage = () => {
-  return <div className="projects">
-    {/* <div className={styles.projectsTitle}>Projects</div> */}
-    {projects.map((item, idx) => <ProjectItem project={item} index={idx} key={idx}/>)}
-  </div>;
+  const [idxOpened, setIdxOpened] = useState<number | null>(null);
+
+  const toggleProject = (idx: number | null) => {
+    setIdxOpened(idx);
+    console.log(idx, 'idx')
+  };
+
+  return (
+    <div className={styles.projects}>
+      {projects.map((item, idx) => (
+        <ProjectItem
+          toggleProject={toggleProject}
+          project={item}
+          index={idx + 1}
+          key={idx}
+          hidden={!!idxOpened && (idx + 1) !== idxOpened}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default ProjectsPage;

@@ -4,4 +4,5 @@ export interface ProjectItem {
   image: string;
   description: string;
   tags?: string[];
+  fullDesc?: string;
 }

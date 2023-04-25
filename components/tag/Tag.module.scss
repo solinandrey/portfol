@@ -4,8 +4,15 @@
   padding: 0.5rem 0.8rem;
   border-radius: 15px;
   font-size: 0.7rem;
+  white-space: nowrap;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
   &:not(:first-child) {
     margin-left: 0.5rem;
+  }
+
+  &:hover:not(.noHover) {
+    color: $white;
+    background: $black;
   }
 }

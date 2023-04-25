@@ -1,25 +1,72 @@
 .project {
   position: relative;
   color: $black;
+  max-height: 30rem;
+  box-sizing: border-box;
+  border: 1px solid $white;
+  background: $white;
+  transition: opacity 0.3s 0.3s ease-in-out, max-height .7s ease-in-out, margin .7s ease-in-out;
 
   &:not(:first-child) {
     margin-top: 5rem;
+  }
+
+  &.hidden {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out, max-height .7s ease-in-out, margin .7s ease-in-out;
+  }
+
+  &:hover {
+    & .border {
+      opacity: 1;
+      
+    }
+  }
+}
+
+.closeTag {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  .opened & {
+    opacity: 1;
+  }
+}
+
+.border {
+  position: absolute;
+  top: -10%;
+  left: -1%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  stroke-dasharray: 200;
+  animation: dash 3s linear infinite;
+
+  .opened & {
+    opacity: 0;
   }
 }
 
 .text {}
 
 .name {
-  font-size: 7.5rem;
+  font-size: 6rem;
   font-weight: 500;
   line-height: 0.8;
   padding-left: 2rem;
+  text-transform: lowercase;
 }
 
 .description {
   display: flex;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .descriptionText {
@@ -37,4 +84,22 @@
 .tags {
   display: flex;
   margin-left: 5rem;
+}
+
+.fullDesc {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.projectFull {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
 }
