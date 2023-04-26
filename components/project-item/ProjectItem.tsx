@@ -53,7 +53,7 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
             {!opened && (
               <div className={styles.tags}>
                 {project.tags?.map((tag) => (
-                  <Tag tag={tag} noHover/>
+                  <Tag tag={tag} noHover key={tag}/>
                 ))}
               </div>
             )}

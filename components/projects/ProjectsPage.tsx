@@ -19,7 +19,7 @@ const ProjectsPage = () => {
           toggleProject={toggleProject}
           project={item}
           index={idx + 1}
-          key={idx}
+          key={idx + item.name}
           hidden={!!idxOpened && (idx + 1) !== idxOpened}
         />
       ))}
