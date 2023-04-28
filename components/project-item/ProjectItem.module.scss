@@ -1,10 +1,12 @@
 .project {
   position: relative;
-  color: $black;
+  color: $white;
   max-height: 30rem;
   box-sizing: border-box;
-  border: 1px solid $white;
-  background: $white;
+  border: 1px solid $black;
+  // background: rgba(255,255,255, 0.7);
+  max-width: max-content;
+  // box-shadow: 0 0 10px 10px $black ;
   transition: opacity 0.3s 0.3s ease-in-out, max-height .7s ease-in-out, margin .7s ease-in-out;
 
   &:not(:first-child) {
@@ -45,8 +47,8 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity .3s ease-in-out;
-  stroke-dasharray: 200;
-  animation: dash 3s linear infinite;
+  stroke-dasharray: 5;
+  animation: dash 25s linear infinite;
 
   .opened & {
     opacity: 0;
@@ -56,7 +58,7 @@
 .text {}
 
 .name {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: 500;
   line-height: 0.8;
   padding-left: 2rem;

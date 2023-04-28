@@ -1,18 +1,33 @@
 import type { ReactElement, ReactNode } from "react";
 
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import type { AppProps } from "next/app";
 import "@fontsource/inter/200.css";
 import "@fontsource/inter/300.css";
 import "@fontsource/inter/500.css";
 import Cursor from "../components/cursor";
-import Navigation from "@components/navigation";
+import Layout from "@components/main-layout/layout";
+import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // const { global } = pageProps;
+  
   return (
     <>
-      <Component {...pageProps} />
+      <AnimatePresence
+        mode="wait"
+        initial={false}
+        onExitComplete={() => {
+          // if (typeof window !== "undefined") {
+          //   window.scrollTo({ top: 0 });
+          // }
+        }}
+      >
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AnimatePresence>
       <Cursor />
     </>
   );

@@ -1,12 +1,15 @@
-import Layout from "@components/main-layout/layout";
 import ProjectsPage from "@components/projects";
+import { useEffect } from "react";
+import uiStore from '@store/ui';
 
 const Projects = () => {
-  return (
-    <Layout>
-      <ProjectsPage />
-    </Layout>
-  );
+  useEffect(() => {
+    uiStore.setActivePage('projects');
+    return () => {
+      uiStore.setActivePage('');
+    }
+  }, [])
+  return <ProjectsPage />;
 };
 
 export default Projects;

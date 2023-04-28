@@ -3,6 +3,7 @@ import { ProjectItem } from "@interfaces/index";
 import Tag from "@components/tag";
 import { useEffect, useRef, useState } from "react";
 import AnimateHeight from "react-animate-height";
+import uiStore from "@store/ui";
 
 interface Props {
   project: ProjectItem;
@@ -27,7 +28,7 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
         width="100%"
         height="100%"
         fill="none"
-        stroke="black"
+        stroke="white"
         strokeWidth="2"
       />
     </svg>
@@ -38,11 +39,18 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
       className={`${styles.project} ${hidden ? styles.hidden : ""} ${
         opened ? styles.opened : ""
       }`}
+      
     >
       <div
         className={styles.projectShort}
         onClick={() => {
           toggleFullDesc(opened ? null : index);
+        }}
+        onMouseEnter={() => {
+          !opened ? uiStore.setCursorHoverMode(true) : null;
+        }}
+        onMouseLeave={() => {
+          uiStore.setCursorHoverMode(false);
         }}
       >
         <div className={styles.index}>/{index}</div>
@@ -53,7 +61,7 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
             {!opened && (
               <div className={styles.tags}>
                 {project.tags?.map((tag) => (
-                  <Tag tag={tag} noHover key={tag}/>
+                  <Tag tag={tag} noHover key={tag} />
                 ))}
               </div>
             )}
@@ -66,6 +74,12 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
         className={styles.closeTag}
         onClick={() => {
           toggleFullDesc(null);
+        }}
+        onMouseEnter={() => {
+          uiStore.setCursorHoverMode(true);
+        }}
+        onMouseLeave={() => {
+          uiStore.setCursorHoverMode(false);
         }}
       >
         <Tag tag={"close"} />

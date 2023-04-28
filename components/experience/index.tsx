@@ -1,3 +1,3 @@
-import Experience from "./ExperiencePage";
+import ExperiencePage from "./ExperiencePage";
 
-export default Experience;
+export default ExperiencePage;

@@ -1,0 +1,23 @@
+.title {
+  font-size: 2rem;
+  text-transform: lowercase;
+  color: $white;
+}
+
+.body {
+  font-size: 1rem;
+  color: $white;
+  font-weight: 500;
+  margin-top: 4rem;
+  display: flex;
+  text-transform: uppercase;
+}
+
+.image {
+  width: 20rem;
+  height: auto;
+  & img {
+    width: 100%;
+    height: auto;
+  }
+}

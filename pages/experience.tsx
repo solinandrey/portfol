@@ -1,12 +1,7 @@
-import Layout from "@components/main-layout/layout";
-import ProjectsPage from "@components/projects";
+import ExperiencePage from "@components/experience";
 
 const Experience = () => {
-  return (
-    <Layout>
-      <ProjectsPage />
-    </Layout>
-  );
+  return <ExperiencePage />;
 };
 
 export default Experience;

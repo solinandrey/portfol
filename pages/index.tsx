@@ -1,13 +1,13 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Layout from "../components/main-layout/layout";
+import { useEffect } from "react";
 import MainPage from "../components/main/MainPage";
+import uiStore from '@store/ui'
 
 export default function Home() {
-  return (
-    <Layout>
-      <MainPage />
-    </Layout>
-  );
+  useEffect(() => {
+    uiStore.setActivePage('home');
+    return () => {
+      uiStore.setActivePage('');
+    }
+  }, [])
+  return <MainPage />;
 }

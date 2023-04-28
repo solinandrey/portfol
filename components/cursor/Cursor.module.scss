@@ -2,9 +2,49 @@
   position: fixed;
   top: 0;
   left: 0;
+  
+  mix-blend-mode:difference;
+  z-index: 1;
+  pointer-events: none;
+  &:after {
+    position: absolute;
+    content: '';
+    width: 19px;
+    height: 19px;
+    transform: translate(-11px, -26px);
+    border-radius: 50%;
+    border: 2px solid $white;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+  }
+
+  &.hoverMode {
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  
+}
+
+.cursorFig {
   width: 15px;
   height: 15px;
   background: $white;
   border-radius: 50%;
-  mix-blend-mode:difference;
+  transform: translate(-7px, -7px);
+  transform-origin: center;
+  transition: transform .3s ease-in-out;
+  .hoverMode &{
+    animation: zoom 0.5s linear infinite alternate;
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  
+}
+
+@keyframes zoom {
+  to {transform: translate(-7px, -7px) scale(0.7)}
 }
