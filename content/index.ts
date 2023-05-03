@@ -1,13 +1,14 @@
 import LinkedIn from '@images/linkedin.png';
 import Instagram from '@images/instagram.png';
 import Telegram from '@images/telegram.png';
+import Fleet from '@images/fleet.png';
 
 export const projects = [
   {
     name: "Fleet",
     link: "https://fleet.city-mobil.ru/",
     description: "Fleet helps to control processes of taxi stations",
-    image: "",
+    image: Fleet.src,
     tags: ["React", "MobX", "styled-components", "Angular", "TypeScript"],
     fullDesc: `<div>
     <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
@@ -68,6 +69,27 @@ export const projects = [
     description: "Digital magazine about digitalization of oil refineries",
     image: "",
     tags: ["Vue JS", "Nuxt JS", "Stylus", "GSAP", "TypeScript"],
+    fullDesc: `<div>
+    <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
+    <div>Duties:</div>
+    <ul>
+      <li>Developing new product features with React + MobX</li>
+      <li>Refactoring legacy code (transferring from Angular to React)</li>
+      <li>Working with data visualization in different formats (tables, graphs, charts)</li>
+      <li>Working with forms</li>
+    </ul>
+  </div>
+  <div>
+    <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
+    <div>Duties:</div>
+    <ul>
+      <li>Developing new product features with React + MobX</li>
+      <li>Refactoring legacy code (transferring from Angular to React)</li>
+      <li>Working with data visualization in different formats (tables, graphs, charts)</li>
+      <li>Working with forms</li>
+    </ul>
+  </div>`,
+    video: 'https://player.vimeo.com/video/349689739?h=a688799f38&badge=0'
   },
   {
     name: "DRIGMATIC",

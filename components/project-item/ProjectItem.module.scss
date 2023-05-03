@@ -48,7 +48,7 @@
   transition: opacity .3s ease-in-out;
   stroke-dasharray: 5;
   animation: dash 25s linear infinite;
-  
+
   .opened & {
     opacity: 0;
     transition-delay: 0;
@@ -120,6 +120,21 @@
 
 .extra {
   width: 20%;
+}
+
+.video {
+  margin-bottom: 3rem;
+  width: 53rem;
+  height: 30rem;
+}
+
+.image {
+  width: 53rem;
+  height: auto;
+  margin-bottom: 2rem;
+  & img {
+    width: 100%;
+  }
 }
 
 

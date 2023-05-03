@@ -5,6 +5,7 @@ export interface ProjectItem {
   description: string;
   tags?: string[];
   fullDesc?: string;
+  video?: string;
 }
 
 export interface CompanyItem extends ProjectItem {

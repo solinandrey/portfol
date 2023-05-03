@@ -24,7 +24,7 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
 
   const toggleBorder = (height: any) => {
     setBorderActive(!height);
-  }
+  };
 
   const borderSvg = (
     <svg width="102%" height="120%" className={styles.border}>
@@ -97,10 +97,29 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
         onHeightAnimationEnd={toggleBorder}
       >
         <div className={styles.projectFull}>
-          <div
-            className={styles.fullDesc}
-            dangerouslySetInnerHTML={{ __html: project.fullDesc || "" }}
-          ></div>
+          <div className={styles.fullDesc}>
+            {project.video && (
+              <iframe
+                className={styles.video}
+                title="vimeo-player"
+                src={project.video}
+                width="640"
+                height="360"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay"
+              ></iframe>
+            )}
+            {project.image && 
+              <div className={styles.image}>
+                <img src={project.image} />
+              </div>
+            }
+            <div
+              className={styles.text}
+              dangerouslySetInnerHTML={{ __html: project.fullDesc || "" }}
+            ></div>
+          </div>
           <div className={styles.extra}>
             <div className={styles.stackFull}>
               {project.tags?.map((tag) => (
