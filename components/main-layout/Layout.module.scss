@@ -76,3 +76,14 @@
     }
   }
 }
+
+.aboutLink {
+  position: fixed;
+  right: 0rem;
+  bottom: 20vh;
+  transform: translate(50%, 0);
+  transition: transform .3s ease-in-out;
+  &:hover {
+    transform: translate(0, 0);
+  }
+}

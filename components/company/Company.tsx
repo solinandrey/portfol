@@ -21,7 +21,7 @@ const Company = ({ company, index }: Props) => {
       ></div>
       <div className={styles.tech}>
         {company.tags?.map((tag) => {
-          return <Tag tag={tag} key={tag + index} />;
+          return <Tag tag={tag} key={tag + index} noHover />;
         })}
       </div>
     </div>

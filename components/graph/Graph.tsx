@@ -9,6 +9,9 @@ const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
 
 
 let t = 0;
+let from:any, to:any, inter;
+let p:any;
+let transitionning;
 
 const Graph = observer(({ parent }: { parent: Element | null }) => {
   const p5Ref = useRef(null);
@@ -35,12 +38,22 @@ const Graph = observer(({ parent }: { parent: Element | null }) => {
     p5Ref.current = p5; 
     p5.noStroke();
     p5.fill(170, 170, 170);
+    from = p5.color(255, 255, 255);
+    to = p5.color(0, 0, 0);
+    p = 0;
+    transitionning = false;
   };
 
   const draw = (p5: any) => {
     const bgColor = colorRev ? 0 : 255;
+    if (p <= 1 && colorRev) {
+      p = p + 0.1;
+    } else if (p >= 0) {
+      p = p - 0.1;
+    }
+    inter = p5.lerpColor(from, to, p)
 
-    p5.background(bgColor, 120); // translucent background (creates trails)
+    p5.background(inter, 120); // translucent background (creates trails)
 
     // make a x and y grid of ellipses
     for (let x = 0; x <= p5.width; x = x + 30) {

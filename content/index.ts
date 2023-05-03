@@ -11,13 +11,21 @@ export const projects = [
     tags: ["React", "MobX", "styled-components", "Angular", "TypeScript"],
     fullDesc: `<div>
     <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
+    <br/>
+    <br/>
     <div>Duties:</div>
     <ul>
       <li>Developing new product features with React + MobX</li>
+      <li>Сomplexity assessment of tasks and plannig future sprints</li>
       <li>Refactoring legacy code (transferring from Angular to React)</li>
+      <li>Working with design team</li>
+      <li>Working with QA team</li>
       <li>Working with data visualization in different formats (tables, graphs, charts)</li>
       <li>Working with forms</li>
     </ul>
+    <br/>
+    <br/>
+    <br/>
   </div>`,
   },
   {

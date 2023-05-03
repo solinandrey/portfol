@@ -17,7 +17,7 @@
   text-align: right;
   margin-left: auto;
   z-index: 1;
-  transition: color .4s ease-in-out, padding-right .3s ease-in-out;
+  transition: color .4s ease-in-out, padding-right .3s ease-in-out, opacity .3s ease-in-out, max-height .3s ease-in-out;
   overflow: hidden;
   cursor: none;
   mix-blend-mode: difference;
@@ -63,6 +63,9 @@
     // margin-top: 1rem;
   }
 
+  &.hidden {
+    opacity: 0;
+  }
 
   &:hover {
     &:before {
@@ -84,5 +87,72 @@
   transition: opacity .3s ease-in-out, transform .3s cubic-bezier(.73,.16,.68,1.03);
   &.visible {
     opacity: 1;
+  }
+}
+
+.navigationHome {
+  margin-top: 2rem;
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:before {
+    display: none;
+  }
+
+  &:hover {
+    & .homeIcon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      stroke: #000000;
+    }
+
+    & .homeCircle {
+      & text {
+        fill: #000000;
+      }
+    }
+
+    & .bgHome {
+      opacity: 1;
+    }
+
+  }
+}
+
+.homeText {
+  font-size: 1rem;
+}
+
+.homeCircle {
+  // position: absolute;
+  top: 0;
+  left: 0;
+  animation: spin 3s linear infinite;
+  
+  & text {
+    transition: fill .3s ease-in-out;
+  }
+}
+
+.homeIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transition: stroke .3s ease-in-out;
+}
+
+.bgHome {
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+
+@keyframes spin {
+  to {
+    transform: rotateZ(360deg);
   }
 }

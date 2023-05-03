@@ -3,7 +3,6 @@
   color: $white;
   max-height: 30rem;
   box-sizing: border-box;
-  border: 1px solid $black;
   // background: rgba(255,255,255, 0.7);
   max-width: max-content;
   // box-shadow: 0 0 10px 10px $black ;
@@ -49,9 +48,10 @@
   transition: opacity .3s ease-in-out;
   stroke-dasharray: 5;
   animation: dash 25s linear infinite;
-
+  
   .opened & {
     opacity: 0;
+    transition-delay: 0;
   }
 }
 
@@ -91,12 +91,35 @@
 .fullDesc {
   font-size: 1.5rem;
   font-weight: 200;
+  width: 70%;
 }
 
 .projectFull {
   padding-bottom: 2rem;
   padding-top: 2rem;
   padding-left: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stackFull {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+  column-gap: 0.5rem;
+}
+
+.link {
+  display: block;
+  margin-top: 5rem;
+  flex: 1 1 auto;
+  cursor: none;
+}
+
+.extra {
+  width: 20%;
 }
 
 

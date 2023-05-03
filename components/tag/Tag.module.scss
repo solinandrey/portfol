@@ -1,4 +1,7 @@
 .tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: $black;
   border: 1px solid $black;
   padding: 0.5rem 0.8rem;
@@ -15,5 +18,11 @@
   &:hover:not(.noHover) {
     color: $white;
     background: $black;
+    border-color: $white;
+  }
+
+  &.bigFont {
+    margin-left: 0;
+    font-size: 1rem;
   }
 }

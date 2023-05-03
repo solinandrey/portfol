@@ -4,6 +4,7 @@ import Tag from "@components/tag";
 import { useEffect, useRef, useState } from "react";
 import AnimateHeight from "react-animate-height";
 import uiStore from "@store/ui";
+import Link from "next/link";
 
 interface Props {
   project: ProjectItem;
@@ -14,11 +15,16 @@ interface Props {
 
 const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
   const [opened, setOpened] = useState(false);
+  const [borderActive, setBorderActive] = useState(true);
 
   const toggleFullDesc = (idx: number | null) => {
     setOpened(!opened);
     toggleProject(idx);
   };
+
+  const toggleBorder = (height: number) => {
+    setBorderActive(!height);
+  }
 
   const borderSvg = (
     <svg width="102%" height="120%" className={styles.border}>
@@ -39,7 +45,6 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
       className={`${styles.project} ${hidden ? styles.hidden : ""} ${
         opened ? styles.opened : ""
       }`}
-      
     >
       <div
         className={styles.projectShort}
@@ -68,7 +73,7 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
           </div>
         </div>
       </div>
-      {!opened && borderSvg}
+      {borderActive && !opened && borderSvg}
 
       <div
         className={styles.closeTag}
@@ -88,12 +93,24 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
       <AnimateHeight
         duration={500}
         height={project.fullDesc && opened ? "auto" : 0}
+        onAnimationEnd={() => setBorderActive(true)}
+        onHeightAnimationEnd={toggleBorder}
       >
         <div className={styles.projectFull}>
           <div
             className={styles.fullDesc}
             dangerouslySetInnerHTML={{ __html: project.fullDesc || "" }}
           ></div>
+          <div className={styles.extra}>
+            <div className={styles.stackFull}>
+              {project.tags?.map((tag) => (
+                <Tag tag={tag} noHover key={tag} bigFont />
+              ))}
+            </div>
+            <Link className={styles.link} href={project.link} target="_blank">
+              <Tag tag={"link"} key={project.name} bigFont isLink />
+            </Link>
+          </div>
         </div>
       </AnimateHeight>
     </div>
