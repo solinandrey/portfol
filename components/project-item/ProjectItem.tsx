@@ -22,7 +22,7 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
     toggleProject(idx);
   };
 
-  const toggleBorder = (height: number) => {
+  const toggleBorder = (height: any) => {
     setBorderActive(!height);
   }
 
