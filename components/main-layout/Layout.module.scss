@@ -15,6 +15,8 @@
   padding: $paddingEdge 0 $paddingEdge $paddingEdge;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  z-index: 1;
+  position: relative;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -45,6 +47,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  pointer-events: none;
   // display: flex;
   // justify-content: center;
   // align-items: center;
@@ -89,5 +92,51 @@
 
   &.hidden {
     transform: translate(100%, 0);
+  }
+}
+
+@media screen and (max-width: 768px){
+  .rightSide {
+    padding-right: 4rem;
+    padding-left: 4rem;
+    width: 100vw;
+    height: 7vh;
+    // position: fixed;
+    top: 0;
+    left: 0;
+    // z-index: 1;
+  }
+
+  .rightBottom {
+    height: 0;
+  }
+
+  .leftSide {
+    width: 100vw;
+    height: 93vh;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 15rem;
+    padding: 10rem 2rem 15rem 2rem;
+  }
+
+  .aboutLink {
+    z-index: 1;
+    &:hover {
+      transform: translate(50%, 0);
+    }
+
+    &.hidden {
+      transform: translate(100%, 0);
+    }
+  }
+  .email {
+    font-size: 3.5rem;
+    bottom: 2.5rem;
+  }
+
+  .mainLayout {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
   }
 }

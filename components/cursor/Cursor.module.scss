@@ -48,3 +48,9 @@
 @keyframes zoom {
   to {transform: translate(-7px, -7px) scale(0.7)}
 }
+
+@media screen and (max-width: 768px){
+  .cursor {
+    display: none;
+  }
+}

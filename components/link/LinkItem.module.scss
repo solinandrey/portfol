@@ -3,7 +3,7 @@
   width: 2rem;
   height: 2rem;
   cursor: none;
-  transition: transform .2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   &:hover {
     transform: scale(1.07);
   }
@@ -15,5 +15,16 @@
 
   &:not(:first-child) {
     margin-left: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .link {
+    width: 10rem;
+    height: 10rem;
+
+    &:not(:first-child) {
+      margin-left: 1.5rem;
+    }
   }
 }

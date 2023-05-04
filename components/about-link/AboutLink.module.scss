@@ -5,3 +5,12 @@
     height: auto;
   }
 }
+
+@media screen and (max-width: 768px){
+  .aboutLink {
+
+    & img {
+      width: 35vw;
+    }
+  }
+}

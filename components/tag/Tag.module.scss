@@ -26,3 +26,13 @@
     font-size: 1rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .tag {
+    font-size: 3rem;
+    padding: 1rem 1.8rem;
+    &:not(:first-child) {
+      margin-left: 0;
+    }
+  }  
+}

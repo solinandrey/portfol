@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -17,6 +17,11 @@ interface TransitionParams {
   exit: {};
 }
 export default function Layout({ children }: any) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 800) setIsMobile(true);
+  }, []);
   const router = useRouter();
 
   const p5Canvas = useRef(null);
@@ -46,6 +51,13 @@ export default function Layout({ children }: any) {
 
   return (
     <div className={styles.mainLayout}>
+      <div
+          className={styles.canvasContainer}
+          id="canvas-container"
+          ref={p5Canvas}
+        >
+          <Graph parent={p5Canvas.current} />
+        </div>
       <motion.div
         initial={transitionAnimation.initial}
         animate={transitionAnimation.animate}
@@ -57,6 +69,7 @@ export default function Layout({ children }: any) {
           duration: 0.8,
         }}
       >
+        
         <main className={styles.leftSide}>{children}</main>
       </motion.div>
       <div className={styles.rightSide}>
@@ -64,26 +77,19 @@ export default function Layout({ children }: any) {
           <Navigation />
         </div>
         <div className={styles.rightBottom}>
-          <div
-            className={styles.canvasContainer}
-            id="canvas-container"
-            ref={p5Canvas}
+          <a
+            className={styles.email}
+            href="mailto:solinandrey@gmail.com"
+            onMouseEnter={() => {
+              ui.setCursorHoverMode(true);
+            }}
+            onMouseLeave={() => {
+              ui.setCursorHoverMode(false);
+            }}
+            target="_blank"
           >
-            <Graph parent={p5Canvas.current} />
-            <a
-              className={styles.email}
-              href="mailto:solinandrey@gmail.com"
-              onMouseEnter={() => {
-                ui.setCursorHoverMode(true);
-              }}
-              onMouseLeave={() => {
-                ui.setCursorHoverMode(false);
-              }}
-              target="_blank"
-            >
-              solinandrey@gmail.com
-            </a>
-          </div>
+            solinandrey@gmail.com
+          </a>
           <div
             className={`${styles.aboutLink} ${
               router.pathname === "/about" ? styles.hidden : ""

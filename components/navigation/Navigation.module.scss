@@ -156,3 +156,43 @@
     transform: rotateZ(360deg);
   }
 }
+
+@media screen and (max-width: 768px){
+  .navigationItem {
+    font-size: 6rem;
+    margin-top: 3rem;
+    width: auto;
+    margin-left: 0;
+
+    &.active {
+      padding-right: 4rem;
+      &:after {
+        transform: translate(0, -30%);
+      }
+    }
+
+    &:hover {
+      &:before {
+        display: none;
+      }
+    }
+
+    &:after {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .navigationHome {
+    position: fixed;
+    top: 10rem;
+    right: 2rem;
+  }
+}
