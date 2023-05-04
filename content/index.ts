@@ -1,7 +1,9 @@
-import LinkedIn from '@images/linkedin.png';
-import Instagram from '@images/instagram.png';
-import Telegram from '@images/telegram.png';
-import Fleet from '@images/fleet.png';
+import LinkedIn from "@images/linkedin.png";
+import Instagram from "@images/instagram.png";
+import Telegram from "@images/telegram.png";
+import Fleet from "@images/fleet.png";
+import Rasu from "@images/rasu.jpg";
+import Drigmatic from "@images/drigmatic.jpg"
 
 export const projects = [
   {
@@ -11,10 +13,13 @@ export const projects = [
     image: Fleet.src,
     tags: ["React", "MobX", "styled-components", "Angular", "TypeScript"],
     fullDesc: `<div>
+    <p>Product I was working on during my time in <a href="https://vk.company/en/" target="_blank">VK</a>
+    <p>I was working in a team of 5 devs (3 backend and 2 frontend), 2 QA, one product designer and product manager. We were making product called Fleet.</p>
     <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
+    <p>We had classic SCRUM planning, two week sprints, regular Retro meetings every week, daily meetings and all in all were always been in touch. These measures helped us to be sure everybody knows in which direction the product is going and everybody could contribute to the product development. It was cool.</p> 
     <br/>
     <br/>
-    <div>Duties:</div>
+    <div>Speaking about my duties:</div>
     <ul>
       <li>Developing new product features with React + MobX</li>
       <li>Сomplexity assessment of tasks and plannig future sprints</li>
@@ -33,35 +38,35 @@ export const projects = [
     name: "ROSATOM AUTOMATED CONTROL SYSTEMS",
     link: "https://www.rasu.ru/en/",
     description: "Informational website for RASU about nuclear power stations",
-    image: "",
+    image: Rasu.src,
     tags: ["Vue JS", "Nuxt JS", "Stylus", "Lottie", "TypeScript", "p5"],
-    fullDesc: `<div>
-    <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
-    <div>Duties:</div>
-    <ul>
-      <li>Developing new product features with React + MobX</li>
-      <li>Refactoring legacy code (transferring from Angular to React)</li>
-      <li>Working with data visualization in different formats (tables, graphs, charts)</li>
-      <li>Working with forms</li>
-    </ul>
-  </div>
-  <div>
-    <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
-    <div>Duties:</div>
-    <ul>
-      <li>Developing new product features with React + MobX</li>
-      <li>Refactoring legacy code (transferring from Angular to React)</li>
-      <li>Working with data visualization in different formats (tables, graphs, charts)</li>
-      <li>Working with forms</li>
-    </ul>
-  </div>`,
+    fullDesc: `<p>Informational website for RASU about nuclear power stations</p>
+    <p>Navigation of website is made through animated posters, every page has its own unique design</p>
+    <p>Scrolling on main page change active poster</p>
+    <p>Clicking on the poster seamlessly takes you to detailed page of project</p>
+    <p>Posters were made in Adobe After Effects by designers. We were also testing their performance for a numerous number of times, trying to make them light as possible in terms of rendering</p>
+    <p>On detailed pages you can find interactive grpahics in right top corner. It was made with p5 library and interacts with user actions on page such as scrolling or moving cursor</p>
+    <p>As a framework we used Nuxt JS</p>
+    <p>Project was made during my great times in <a href="https://beta.agency" target="_blank">Beta Agency</a></p>`,
   },
   {
     name: "Absolut Insurance",
-    link: "https://www.absolutins.ru/",
-    description: "Website for insurance company Absolut",
+    link: "https://www.absolutins.ru/",     description: "Website for insurance company Absolut",
     image: "",
-    tags: ["Vue JS", "Nuxt JS", "Stylus", "GSAP", "TypeScript"],
+    video: "https://player.vimeo.com/video/766458572?h=ee71c4bd8f&title=0&byline=0&portrait=0",
+    tags: ["Vue JS", "Nuxt JS", "Stylus", "GSAP", "TypeScript", "Lottie"],
+    fullDesc: `
+    <p>On this project I was leading frontend team of 5 devs</p>
+    <p>We had really tiny amount of time to complete the project, which had to have not ordinary design with animations and at the same time product functions because they sell insurance products online</p>
+    <p>I managed to allocate responsibilities in a proper way to finish the project despite lack of time</p>
+    </p>We've created our own form builder to complete all pages with forms much quicker, which helped us to decrease amount of time for this part of website</p>
+    <p>Also we optimized all animations we used through profiling and finding all bottle-neck places of code. For example, animations on cards were made with Lottie JS and all of them are controlled by user location on the page</p>
+    <p>Card animations were made in Adobe After Effects by designers and implemented with Lottie JS. We were also testing their performance for a numerous number of times, trying to make them light as possible in terms of rendering</p>
+    <p>Menu opening and closing animations were made with GSAP</p>
+    <p>Website also has admin panel from which data is collected through REST API</p>
+    <p>Nuxt JS was picked as framework</p>
+    <p>Project was made during my great times in <a href="https://beta.agency" target="_blank">Beta Agency</a></p>
+    `
   },
   {
     name: "SIBUR DIGITAL",
@@ -70,33 +75,25 @@ export const projects = [
     image: "",
     tags: ["Vue JS", "Nuxt JS", "Stylus", "GSAP", "TypeScript"],
     fullDesc: `<div>
-    <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
-    <div>Duties:</div>
-    <ul>
-      <li>Developing new product features with React + MobX</li>
-      <li>Refactoring legacy code (transferring from Angular to React)</li>
-      <li>Working with data visualization in different formats (tables, graphs, charts)</li>
-      <li>Working with forms</li>
-    </ul>
-  </div>
-  <div>
-    <div>Fleet helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations</div>
-    <div>Duties:</div>
-    <ul>
-      <li>Developing new product features with React + MobX</li>
-      <li>Refactoring legacy code (transferring from Angular to React)</li>
-      <li>Working with data visualization in different formats (tables, graphs, charts)</li>
-      <li>Working with forms</li>
-    </ul>
+    <p>This project was my first project in <a href="https://beta.agency" target="_blank">Beta Agency</a></p>
+    <p>The main goal of the project was to create a digital magazine website about digitalization of the oil industry and all its aspects, as well as implementing modern technologies in this business sector</p>
+    <p>Lots of animations mostly made with GSAP took a lot of time to optimize work on most devices</p>
+    <p>Different pages of website have different types of design experiments, from dragging event cards to nonstop running texts, so it's really intersting just to surf through pages and try all of these features</p>
+    <p>Website has admin panel from which data is collected through REST API</p>
+    <p>Nuxt JS was picked as framework</p>
   </div>`,
-    video: 'https://player.vimeo.com/video/349689739?h=a688799f38&badge=0'
+    video: "https://player.vimeo.com/video/349689739?h=a688799f38&title=0",
   },
   {
     name: "DRIGMATIC",
     link: "https://drigmatic.com/",
     description: "Gaming community website",
-    image: "",
+    image: Drigmatic.src,
     tags: ["Vue JS", "SCSS", "GSAP"],
+    fullDesc: `<p>Project was made during my freelancing time</p>
+    <p>Mostly I used Vue on this project</p><p>Color reverse effect was made by using mix-blend-mode property</p><p>Scrolling hoizontal effect in a middle of main page was made with GSAP plugin</p>
+    <p>Hearts in top right corner tracks scroll progress</p>
+    <p>Also used Intersection Observer for footer animation with interacts with scrolling</p>`
   },
 ];
 
@@ -112,7 +109,10 @@ export const companies = [
     <div>Duties:</div>
     <ul>
       <li>Developing new product features with React + MobX</li>
+      <li>Сomplexity assessment of tasks and plannig future sprints</li>
       <li>Refactoring legacy code (transferring from Angular to React)</li>
+      <li>Working with design team</li>
+      <li>Working with QA team</li>
       <li>Working with data visualization in different formats (tables, graphs, charts)</li>
       <li>Working with forms</li>
     </ul>`,

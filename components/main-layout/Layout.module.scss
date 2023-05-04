@@ -86,4 +86,8 @@
   &:hover {
     transform: translate(0, 0);
   }
+
+  &.hidden {
+    transform: translate(100%, 0);
+  }
 }

@@ -12,27 +12,31 @@ let x = 50;
 let y = 50;
 
 interface TransitionParams {
-  initial: {}
-  animate: {}
-  exit: {}
+  initial: {};
+  animate: {};
+  exit: {};
 }
 export default function Layout({ children }: any) {
   const router = useRouter();
 
   const p5Canvas = useRef(null);
-  let transitionAnimation: TransitionParams = {initial:{}, animate: {}, exit: {}};
+  let transitionAnimation: TransitionParams = {
+    initial: {},
+    animate: {},
+    exit: {},
+  };
 
   const defaultTransition = {
-    initial: {y: -30, opacity: 0, scale: 1.5},
+    initial: { y: -30, opacity: 0, scale: 1.5 },
     animate: { y: 0, opacity: 1, scale: 1 },
-    exit:{ y: 30, opacity: 0, scale: 1.5 }
-  }
+    exit: { y: 30, opacity: 0, scale: 1.5 },
+  };
 
   const aboutTransition = {
-    initial: {x: 1000, opacity: 0, scale: 1},
-    animate: { x: 0, opacity: 1, scale: 1},
-    exit:{ x: 1000, opacity: 0, scale: 1}
-  }
+    initial: { x: 1000, opacity: 0, scale: 1 },
+    animate: { x: 0, opacity: 1, scale: 1 },
+    exit: { x: 1000, opacity: 0, scale: 1 },
+  };
 
   if (router.pathname === "/about") {
     transitionAnimation = aboutTransition;
@@ -48,7 +52,6 @@ export default function Layout({ children }: any) {
         exit={transitionAnimation.exit}
         key={router.asPath}
         style={{ zIndex: 1 }}
-        onAnimationStart={() => {console.log('anim start', ui.activePage)}}
         transition={{
           type: "spring",
           duration: 0.8,
@@ -81,7 +84,11 @@ export default function Layout({ children }: any) {
               solinandrey@gmail.com
             </a>
           </div>
-          <div className={styles.aboutLink}>
+          <div
+            className={`${styles.aboutLink} ${
+              router.pathname === "/about" ? styles.hidden : ""
+            }`}
+          >
             <AboutLink />
           </div>
         </div>

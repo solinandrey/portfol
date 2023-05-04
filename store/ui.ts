@@ -24,7 +24,6 @@ class UIStore {
 
   setCursorHoverMode(mode: boolean) {
     this.cursorHoverMode = mode;
-    console.log(mode, 'mode')
   }
 }
 

@@ -92,6 +92,16 @@
   font-size: 1.5rem;
   font-weight: 200;
   width: 70%;
+
+  & a {
+    text-decoration: underline;
+    cursor: none;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    &:hover {
+      background: $white;
+      color: $black
+    }
+  }
 }
 
 .projectFull {

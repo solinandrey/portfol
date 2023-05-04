@@ -9,7 +9,6 @@ const ProjectsPage = () => {
 
   const toggleProject = (idx: number | null) => {
     setIdxOpened(idx);
-    console.log(idx, 'idx')
   };
 
   return (
