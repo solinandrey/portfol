@@ -2,7 +2,6 @@ import AboutLink from "@components/about-link";
 import styles from "./MainPage.module.scss";
 import LinkItem from "@components/link";
 import { links } from "@content/index";
-import ui from "@store/ui";
 
 const MainPage = () => {
   return (

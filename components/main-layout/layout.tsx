@@ -7,6 +7,7 @@ import Navigation from "../navigation/Navigation";
 import ui from "@store/ui";
 import Graph from "@components/graph";
 import AboutLink from "@components/about-link";
+import { observer } from "mobx-react-lite";
 
 let x = 50;
 let y = 50;
@@ -16,11 +17,14 @@ interface TransitionParams {
   animate: {};
   exit: {};
 }
-export default function Layout({ children }: any) {
+export default observer(function Layout({ children }: any) {
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (window.innerWidth < 800) ui.setIsMobile(true);
-
+    setTimeout(() => {
+      setLoaded(true);
+    }, 200);
   }, []);
   const router = useRouter();
 
@@ -31,11 +35,17 @@ export default function Layout({ children }: any) {
     exit: {},
   };
 
-  const defaultTransition = {
-    initial: { y: -30, opacity: 0, scale: 1.5 },
-    animate: { y: 0, opacity: 1, scale: 1 },
-    exit: { y: 30, opacity: 0, scale: 1.5 },
-  };
+  const defaultTransition = ui.isMobile
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+    : {
+        initial: { y: -30, opacity: 0, scale: 1.5 },
+        animate: { y: 0, opacity: 1, scale: 1 },
+        exit: { y: 30, opacity: 0, scale: 1.5 },
+      };
 
   const aboutTransition = {
     initial: { x: 1000, opacity: 0, scale: 1 },
@@ -43,21 +53,21 @@ export default function Layout({ children }: any) {
     exit: { x: 1000, opacity: 0, scale: 1 },
   };
 
-  if (router.pathname === "/about") {
+  if (router.pathname === "/about" && !ui.isMobile) {
     transitionAnimation = aboutTransition;
   } else {
     transitionAnimation = defaultTransition;
   }
 
   return (
-    <div className={styles.mainLayout}>
+    <div className={`${styles.mainLayout} ${!loaded ? styles.notLoaded : ''}`}>
       <div
-          className={styles.canvasContainer}
-          id="canvas-container"
-          ref={p5Canvas}
-        >
-          <Graph parent={p5Canvas.current} />
-        </div>
+        className={styles.canvasContainer}
+        id="canvas-container"
+        ref={p5Canvas}
+      >
+        <Graph parent={p5Canvas.current} />
+      </div>
       <motion.div
         initial={transitionAnimation.initial}
         animate={transitionAnimation.animate}
@@ -69,7 +79,6 @@ export default function Layout({ children }: any) {
           duration: 0.8,
         }}
       >
-        
         <main className={styles.leftSide}>{children}</main>
       </motion.div>
       <div className={styles.rightSide}>
@@ -101,4 +110,4 @@ export default function Layout({ children }: any) {
       </div>
     </div>
   );
-}
+});
