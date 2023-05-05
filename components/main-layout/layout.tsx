@@ -17,10 +17,10 @@ interface TransitionParams {
   exit: {};
 }
 export default function Layout({ children }: any) {
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 800) setIsMobile(true);
+    if (window.innerWidth < 800) ui.setIsMobile(true);
+
   }, []);
   const router = useRouter();
 

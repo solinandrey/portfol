@@ -34,5 +34,9 @@
     &:not(:first-child) {
       margin-left: 0;
     }
+    &.bigFont {
+      margin-left: 0;
+      font-size: 3rem;
+    }
   }  
 }

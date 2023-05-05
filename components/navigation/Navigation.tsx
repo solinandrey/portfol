@@ -4,6 +4,7 @@ import Link from "next/link";
 import uiStore from "@store/ui";
 import { observer } from "mobx-react-lite";
 import { IconHome2 } from "@tabler/icons-react";
+import ui from "@store/ui";
 
 const menuList = [
   {
@@ -50,26 +51,36 @@ const Navigation = () => {
         </div> */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          height="80"
-          width="80"
+          height={ui.isMobile ? 50 : 80}
+          width={ui.isMobile ? 50 : 80}
           className={styles.homeCircle}
         >
-          <circle cx="40" cy="40" r="39" fill="#ffffff" className={styles.bgHome}/>
+          <circle
+            cx={ui.isMobile ? 25 : 40}
+            cy={ui.isMobile ? 25 : 40}
+            r={ui.isMobile ? 24 : 40}
+            fill="#ffffff"
+            className={styles.bgHome}
+          />
           <path
             id="myTextPath"
-            d="M12,40a28,28 0 1,0 56,0a28,28 0 1,0 -56,0"
+            d={
+              ui.isMobile
+                ? "M4,25a21,21 0 1,0 42,0a21,21 0 1,0 -42,0"
+                : "M12,40a28,28 0 1,0 56,0a28,28 0 1,0 -56,0"
+            }
             fill="none"
             stroke="none"
             strokeWidth="2"
           />
 
-          <text style={{stroke: "#ffffff"}} fill="white" strokeWidth="0">
+          <text style={{ stroke: "#ffffff" }} fill="white" strokeWidth="0">
             <textPath href="#myTextPath" className={styles.homeText}>
               <tspan dy="2">back home</tspan>
             </textPath>
           </text>
         </svg>
-        <IconHome2 className={styles.homeIcon}/>
+        <IconHome2 className={styles.homeIcon} />
       </Link>
     </div>
   );

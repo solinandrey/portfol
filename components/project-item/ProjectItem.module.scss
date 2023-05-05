@@ -3,13 +3,14 @@
   color: $white;
   max-height: 30rem;
   box-sizing: border-box;
-  // background: rgba(255,255,255, 0.7);
   max-width: max-content;
-  // box-shadow: 0 0 10px 10px $black ;
-  transition: opacity 0.3s 0.3s ease-in-out, max-height .7s ease-in-out, margin .7s ease-in-out;
+  transition: opacity 0.3s 0.3s ease-in-out, max-height .7s ease-in-out, margin-top .7s ease-in-out;
 
   &:not(:first-child) {
     margin-top: 5rem;
+    &.opened {
+      margin-top: 0;
+    }
   }
 
   &.hidden {
@@ -18,7 +19,12 @@
     margin: 0;
     pointer-events: none;
     transition: opacity 0.3s ease-in-out, max-height .7s ease-in-out, margin .7s ease-in-out;
+    &:not(:first-child) {
+      margin-top: 0;
+    }
   }
+
+  
 
   &:hover {
     & .border {
@@ -159,6 +165,7 @@
   .name {
     font-size: 10rem;
     padding-left: 4rem;
+    width: 80%;
   }
 
   .description {
@@ -186,10 +193,67 @@
     max-height: unset;
     &:not(:first-child) {
       margin-top: 13rem;
+      &.opened {
+        margin-top: 13rem;
+      }
+    }
+
+    &.hidden {
+      opacity: 1;
+      height: auto;
+      max-height: unset;
+      pointer-events: all;
+      transition: opacity 0.3s ease-in-out, max-height .7s ease-in-out, margin .7s ease-in-out;
+      &:not(:first-child) {
+        margin-top: 13rem;
+      }
     }
   }
 
   .index {
     font-size: 3rem;
   }
+
+  .fullDesc {
+    font-size: 4rem;
+    width: 100%;
+  
+    & a {
+      text-decoration: underline;
+      cursor: none;
+      transition: background-color .3s ease-in-out, color .3s ease-in-out;
+      &:hover {
+        background: $white;
+        color: $black
+      }
+    }
+  }
+
+  .projectFull {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+    & img {
+      width: 100%;
+    }
+  }
+
+  .closeTag {
+    right: 19rem;
+  }
+
+  .extra {
+    width: 100%;
+  }
+
+  .video {
+    width: 100%;
+    height: calc(90vw * 0.56);
+  }
+
 }

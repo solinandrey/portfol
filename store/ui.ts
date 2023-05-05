@@ -5,6 +5,7 @@ class UIStore {
   activePage = '';
   cursorPoint = {x: 0, y: 0};
   cursorHoverMode = false;
+  isMobile = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -24,6 +25,10 @@ class UIStore {
 
   setCursorHoverMode(mode: boolean) {
     this.cursorHoverMode = mode;
+  }
+
+  setIsMobile(val: boolean) {
+    this.isMobile = val;
   }
 }
 

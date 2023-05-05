@@ -91,7 +91,7 @@ export const projects = [
     image: Drigmatic.src,
     tags: ["Vue JS", "SCSS", "GSAP"],
     fullDesc: `<p>Project was made during my freelancing time</p>
-    <p>Mostly I used Vue on this project</p><p>Color reverse effect was made by using mix-blend-mode property</p><p>Scrolling hoizontal effect in a middle of main page was made with GSAP plugin</p>
+    <p>Mostly I used Vue on this project</p><p>Color reverse effect was made by using mix-blend-mode property</p><p>Horizontal scrolling effect in a middle of main page was made with GSAP plugin</p>
     <p>Hearts in top right corner tracks scroll progress</p>
     <p>Also used Intersection Observer for footer animation with interacts with scrolling</p>`
   },
@@ -105,11 +105,12 @@ export const companies = [
     image: "",
     tags: ["React", "TypeScript", "MobX", "styled-components", "Storybook"],
     year: "07.2021 - 04.2022",
-    fullDesc: `<p>Taxi companies work with Citymobil using b2b software - Fleet. It helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations.</p>
-    <div>Duties:</div>
+    fullDesc: ` <p>Taxi companies work with Citymobil using b2b software - Fleet. It helps to control processes of taxi stations, such as collecting different reports about rides, working with drivers and other information connected with taxi stations. I was working in a team of 5 devs (3 backend and 2 frontend), 2 QA, one product designer and product manager.</p>
+    <p>We had classic SCRUM planning, two week sprints, regular Retro meetings every week, daily meetings and, all in all, had always been in touch. These measures helped us to be sure everybody knows in which direction the product is going and everybody could contribute to the product development.</p>
+    <p>Duties:</p>
     <ul>
       <li>Developing new product features with React + MobX</li>
-      <li>Сomplexity assessment of tasks and plannig future sprints</li>
+      <li>Complexity assessment of tasks and planning of future sprints</li>
       <li>Refactoring legacy code (transferring from Angular to React)</li>
       <li>Working with design team</li>
       <li>Working with QA team</li>
@@ -125,7 +126,10 @@ export const companies = [
     tags: ["Vue", "Nuxt", "GSAP", "TypeScript", "Stylus", "Lottie", "p5"],
     year: "06.2019 - 07.2021",
     fullDesc: `
-    <div>Duties:</div>
+    <p>Outsource development of websites with creative interfaces</p>
+  <p>Worked with creative interfaces. Came here to the position of Junior Frontend Developer and after 1.5 years I was leading a Frontend team of 5 devs. In these two years I took part in 5 projects</p>
+  <p>Thanks to these time I gained a lot of experience in creating web animations, paying attention to website performance and working on optimization of the rendering process. Usually we had a really small amount of time to complete projects (as in any digital studio), so in this tempo I also upgraded my ability to complete tasks in a short time but not forgetting about quality of code. Strict deadlines forced me to gain expertise in new technologies fast and I was rather good at it.</p>
+  <p>Duties:</p>
   <ul>
     <li>Working with complicated animations using Vue JS (Nuxt JS was used where SSR was needed)</li>
     <li>Optimizing website performance in terms of rendering process</li>
@@ -141,10 +145,13 @@ export const companies = [
     image: "",
     tags: ["Vue", "JQuery", "SCSS"],
     year: "01.2018 - 01.2019",
-    fullDesc: `<div>Duties:</div>
+    fullDesc: ` <p>My starting point in Frontend Development. We made websites for different customers, mostly on classic HTML+JS+CSS, and several projects were made with Vue JS.</p>
+    <p>This place of work taught me the basics of web development and planning of my work (because there were always several active projects at the same time).</p>
+    <p>Duties:</p>
     <ul>
-      <li>Working with layouts and animations, mostly used jQuery, but some of the projects were made with Vue JS.</li>
-      <li>Supporting existing projects</li>
+      <li>Working with layouts. Coding new and supporting legacy.</li>
+      <li>Working directly with design team</li>
+      <li>Working with backend team</li>
     </ul>`,
   },
 ];
