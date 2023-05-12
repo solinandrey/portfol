@@ -38,8 +38,8 @@ const Graph = observer(({ parent }: { parent: Element | null }) => {
     p5Ref.current = p5; 
     p5.noStroke();
     p5.fill(170, 170, 170);
-    from = p5.color(255, 255, 255);
-    to = p5.color(0, 0, 0);
+    from = p5.color(237, 237, 237);
+    to = p5.color(18, 18, 18);
     p = 0;
     transitionning = false;
   };
