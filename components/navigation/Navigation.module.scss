@@ -167,6 +167,7 @@
     margin-top: 3rem;
     width: auto;
     margin-left: 0;
+    color: $black;
 
     &.active {
       padding-right: 4rem;
@@ -184,6 +185,7 @@
     &:after {
       width: 2.5rem;
       height: 2.5rem;
+      background: $black;
     }
   }
 
