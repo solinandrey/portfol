@@ -60,7 +60,11 @@ export default observer(function Layout({ children }: any) {
   }
 
   return (
-    <div className={`${styles.mainLayout} ${!loaded ? styles.notLoaded : ''}`}>
+    <div
+      className={`${styles.mainLayout} ${!loaded ? styles.notLoaded : ""} ${
+        router.pathname === "/" ? styles.home : ""
+      }`}
+    >
       <div
         className={styles.canvasContainer}
         id="canvas-container"
@@ -87,7 +91,9 @@ export default observer(function Layout({ children }: any) {
         </div>
         <div className={styles.rightBottom}>
           <a
-            className={styles.email}
+            className={`${styles.email} ${
+              router.pathname !== "/" ? styles.hidden : ""
+            }`}
             href="mailto:solinandrey@gmail.com"
             onMouseEnter={() => {
               ui.setCursorHoverMode(true);

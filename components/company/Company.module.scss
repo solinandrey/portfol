@@ -51,6 +51,11 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  .company {
+    max-width: unset;
+  }
+  
   .name {
     font-size: 10rem;
   }

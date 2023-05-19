@@ -26,6 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
         <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
         <link rel="mask-icon" href={safariPinned.src} color="#5bbad5" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFC1N99FRG"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
