@@ -1,6 +1,7 @@
 .company {
   position: relative;
   padding-left: 3rem;
+  max-width: 64vw;
   &:not(:first-child) {
     margin-top: 5rem;
   }

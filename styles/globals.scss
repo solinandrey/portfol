@@ -33,3 +33,25 @@ div {
   box-sizing: border-box;
 }
 
+
+ul, ol {  
+  list-style-type: none;  
+  & li {
+    padding-left: 1rem;
+    position: relative;
+    &:before {
+      content: '-';
+      position: absolute;
+      left: -10px;
+      top: 0.2rem;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      animation: spin 0.5s linear infinite alternate;
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: translateX(5px);}
+}

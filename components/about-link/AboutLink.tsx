@@ -1,5 +1,5 @@
 import styles from "./AboutLink.module.scss";
-import me from "@images/IMG_6583.png";
+import me from "@images/IMG_6583.JPG";
 import Image from "next/image";
 import ui from "@store/ui";
 import Link from "next/link";

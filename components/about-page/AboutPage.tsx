@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styles from "./AboutPage.module.scss";
 import ui from "@store/ui";
-import me from "@images/IMG_6583.png";
+import me from "@images/IMG_6583.JPG";
 import Image from "next/image";
 
 const AboutPage = () => {
@@ -25,10 +25,10 @@ const AboutPage = () => {
             and play tennis and football
           </p>
           <br />
-          Throughout my career, I have worked in different projects, most of them connected with complicated interfaces and animations, but I also have experience of product development in a big company.
+          Throughout my career, I have worked in different projects, most of them connected with complicated interfaces and animations, but I also have experience of product development in a&nbsp;big company.
           <br/>
           <br/>
-          My main stack right now is React + MobX + SCSS, but I also worked with Vue for a couple of years. Anyway, I'm always ready to learn new technologies as well as to upgrade my skills with known stack. 
+          My main stack right now is React + MobX + SCSS, but I also worked with Vue for a&nbsp;couple of years. Anyway, I'm always ready to learn new technologies as well as to upgrade my skills with known stack. 
           <br />
           <br />
           I'm open for full-time job opportunities and for contract-based projects

@@ -7,10 +7,9 @@ const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,
 });
 
-
 let t = 0;
-let from:any, to:any, inter;
-let p:any;
+let from: any, to: any, inter, fromFill: any, toFill: any, fillCol;
+let p: any;
 let transitionning;
 
 const Graph = observer(({ parent }: { parent: Element | null }) => {
@@ -18,26 +17,25 @@ const Graph = observer(({ parent }: { parent: Element | null }) => {
   const [colorRev, setColorRev] = useState(false);
 
   useEffect(() => {
-    if (ui.activePage === 'about me' || ui.activePage === 'projects') {
+    if (ui.activePage === "about me" || ui.activePage === "projects") {
       setColorRev(true);
     } else {
       setColorRev(false);
     }
-  }, [ui.activePage])
+  }, [ui.activePage]);
 
   const setup = (p5: any, canvasParentRef: Element | null) => {
     if (p5Ref.current) (p5Ref.current as any).remove();
 
-    window.addEventListener('resize', () => {
-      
-    });
-    p5.createCanvas(
-      window.innerWidth,
-      window.innerHeight
-    ).parent(canvasParentRef);
-    p5Ref.current = p5; 
+    window.addEventListener("resize", () => {});
+    p5.createCanvas(window.innerWidth, window.innerHeight).parent(
+      canvasParentRef
+    );
+    p5Ref.current = p5;
     p5.noStroke();
-    p5.fill(170, 170, 170);
+    // p5.fill(120, 120, 120);
+    fromFill = p5.color(160, 160, 160);
+    toFill = p5.color(120, 120, 120);
     from = p5.color(237, 237, 237);
     to = p5.color(18, 18, 18);
     p = 0;
@@ -51,9 +49,11 @@ const Graph = observer(({ parent }: { parent: Element | null }) => {
     } else if (p >= 0) {
       p = p - 0.1;
     }
-    inter = p5.lerpColor(from, to, p)
+    inter = p5.lerpColor(from, to, p);
+    fillCol = p5.lerpColor(fromFill, toFill, p);
 
     p5.background(inter, 120); // translucent background (creates trails)
+    p5.fill(fillCol);
 
     // make a x and y grid of ellipses
     for (let x = 0; x <= p5.width; x = x + 30) {
@@ -89,11 +89,11 @@ const Graph = observer(({ parent }: { parent: Element | null }) => {
     t = t + 0.01;
   };
 
-  function windowResized(p5: any){
+  function windowResized(p5: any) {
     p5.resizeCanvas(window.innerWidth, window.innerHeight);
   }
 
-  return <Sketch setup={setup} draw={draw} windowResized={windowResized}/>;
+  return <Sketch setup={setup} draw={draw} windowResized={windowResized} />;
 });
 
 export default React.memo(Graph);

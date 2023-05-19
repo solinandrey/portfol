@@ -21,12 +21,20 @@
 
   & a {
     text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
     cursor: none;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+      &:hover {
+        background: $white;
+        color: $black
+      }
   }
 
   & .text {
     width: 70%;
     margin-left: 4rem;
+    max-width: 50rem;
     & p {
       margin-top: 0;
     }
@@ -34,7 +42,7 @@
 }
 
 .image {
-  width: 16rem;
+  width: 18rem;
   height: auto;
   & img {
     width: 100%;
@@ -43,10 +51,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .text {
-    font-size: 3.5rem;
-  }
-
   .image {
     width: 32rem;
     margin-bottom: 4rem;
@@ -56,5 +60,11 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
+
+    & .text {
+      font-size: 3.5rem;
+      width: 80%;
+      max-width: unset;
+    }
   }
 }

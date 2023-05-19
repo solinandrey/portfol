@@ -101,6 +101,10 @@
     display: none;
   }
 
+  & tspan {
+    letter-spacing: 0.3rem;
+  }
+
   &:hover {
     & .homeIcon {
       position: absolute;
