@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styles from "./AboutPage.module.scss";
 import ui from "@store/ui";
-import me from "@images/IMG_6583.JPG";
+import me from "@images/me.jpg";
 import Image from "next/image";
 
 const AboutPage = () => {
