@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from "react";
-
+import { useEffect } from "react";
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
 import "@fontsource/inter/200.css";
@@ -9,10 +9,10 @@ import Cursor from "../components/cursor";
 import Layout from "@components/main-layout/layout";
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
-import favicon32 from '@images/favicon-32x32.png';
-import favicon16 from '@images/favicon-16x16.png';
-import appleTouch from '@images/apple-touch-icon.png';
-import safariPinned from '@images/safari-pinned-tab.svg'
+import favicon32 from "@images/favicon-32x32.png";
+import favicon16 from "@images/favicon-16x16.png";
+import appleTouch from "@images/apple-touch-icon.png";
+import safariPinned from "@images/safari-pinned-tab.svg";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // const { global } = pageProps;
@@ -22,34 +22,24 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>Andrey Solin | Frontend Developer</title>
         <meta name="description" content="Frontend developer" key="desc" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href={appleTouch.src}
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href={favicon32.src}
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href={favicon16.src}
-        />
+        <link rel="apple-touch-icon" sizes="180x180" href={appleTouch.src} />
+        <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
+        <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
         <link rel="mask-icon" href={safariPinned.src} color="#5bbad5" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-DFC1N99FRG', {
+              page_path: window.location.pathname,
+            })
+        `,
+          }}
+        ></script>
       </Head>
-      <AnimatePresence
-        mode="wait"
-        initial={false}
-        onExitComplete={() => {
-          // if (typeof window !== "undefined") {
-          //   window.scrollTo({ top: 0 });
-          // }
-        }}
-      >
+      <AnimatePresence mode="wait" initial={false} onExitComplete={() => {}}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
