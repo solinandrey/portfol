@@ -25,6 +25,7 @@ export default observer(function Layout({ children }: any) {
     setTimeout(() => {
       setLoaded(true);
     }, 200);
+    window.addEventListener('wheel', () => {console.log('scroll')})
   }, []);
   const router = useRouter();
 

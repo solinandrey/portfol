@@ -13,6 +13,7 @@ import favicon32 from "@images/favicon-32x32.png";
 import favicon16 from "@images/favicon-16x16.png";
 import appleTouch from "@images/apple-touch-icon.png";
 import safariPinned from "@images/safari-pinned-tab.svg";
+import me from '@images/me.jpg';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // const { global } = pageProps;
@@ -21,7 +22,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <title>Andrey Solin | Frontend Developer</title>
-        <meta name="description" content="Frontend developer" key="desc" />
+        <meta name="description" content="Frontend developer based in Tbilisi" key="desc" />
         <link rel="apple-touch-icon" sizes="180x180" href={appleTouch.src} />
         <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
         <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
@@ -37,6 +38,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `,
           }}
         ></script>
+         <meta
+          property="og:image"
+          content={me.src}
+        />
       </Head>
       <AnimatePresence mode="wait" initial={false} onExitComplete={() => {}}>
         <Layout>

@@ -4,6 +4,7 @@ import Telegram from "@images/telegram.png";
 import Fleet from "@images/fleet.png";
 import Rasu from "@images/rasu.jpg";
 import Drigmatic from "@images/drigmatic.jpg"
+import {IconFileCv} from "@tabler/icons-react";
 
 export const projects = [
   {
@@ -160,4 +161,5 @@ export const links = [
   { link: "https://www.linkedin.com/in/andreysolin/", image: LinkedIn },
   { link: "https://www.instagram.com/solinandrey/", image: Instagram },
   { link: "https://t.me/soul_in", image: Telegram },
+  // { link: "https://t.me/soul_in", image: IconFileCv },
 ];
