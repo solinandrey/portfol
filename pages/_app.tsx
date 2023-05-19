@@ -13,7 +13,7 @@ import favicon32 from "@images/favicon-32x32.png";
 import favicon16 from "@images/favicon-16x16.png";
 import appleTouch from "@images/apple-touch-icon.png";
 import safariPinned from "@images/safari-pinned-tab.svg";
-import me from '@images/me.jpg';
+import me from "@images/me.jpg";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // const { global } = pageProps;
@@ -22,12 +22,19 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <title>Andrey Solin | Frontend Developer</title>
-        <meta name="description" content="Frontend developer based in Tbilisi" key="desc" />
+        <meta
+          name="description"
+          content="Frontend developer based in Tbilisi"
+          key="desc"
+        />
         <link rel="apple-touch-icon" sizes="180x180" href={appleTouch.src} />
         <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
         <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
         <link rel="mask-icon" href={safariPinned.src} color="#5bbad5" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFC1N99FRG"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-DFC1N99FRG"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
@@ -38,9 +45,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `,
           }}
         ></script>
-         <meta
-          property="og:image"
-          content={me.src}
+        <meta property="og:image" content={me.src} />
+        <meta property="og:title" content="Andrey Solin | Frontend Developer" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://andreysol.in/" />
+        <meta
+          property="og:description"
+          content="Frontend developer based in Tbilisi"
         />
       </Head>
       <AnimatePresence mode="wait" initial={false} onExitComplete={() => {}}>
