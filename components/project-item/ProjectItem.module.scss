@@ -92,6 +92,11 @@
 .tags {
   display: flex;
   margin-left: 5rem;
+  transition: opacity .3s 0.5s ease-in-out;
+  .opened & {
+    opacity: 0;
+    transition-delay: 0s;
+  }
 }
 
 .fullDesc {

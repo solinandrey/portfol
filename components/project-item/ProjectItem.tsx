@@ -63,13 +63,12 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
           <div className={styles.name}>{project.name}</div>
           <div className={styles.description}>
             <div className={styles.descriptionText}>{project.description}</div>
-            {!opened && (
-              <div className={styles.tags}>
-                {project.tags?.map((tag) => (
-                  <Tag tag={tag} noHover key={tag} />
-                ))}
-              </div>
-            )}
+
+            <div className={styles.tags}>
+              {project.tags?.map((tag) => (
+                <Tag tag={tag} noHover key={tag} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -110,11 +109,11 @@ const ProjectItem = ({ project, index, hidden, toggleProject }: Props) => {
                 allow="autoplay"
               ></iframe>
             )}
-            {project.image && 
+            {project.image && (
               <div className={styles.image}>
                 <img src={project.image} />
               </div>
-            }
+            )}
             <div
               className={styles.text}
               dangerouslySetInnerHTML={{ __html: project.fullDesc || "" }}
