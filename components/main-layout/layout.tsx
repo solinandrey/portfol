@@ -34,41 +34,49 @@ export default observer(function Layout({ children }: any) {
     }, 200);
   }, []);
   useEffect(() => {
+    setSwitcherActive(false);
+    setMobileSwitcherActive(false);
+  }, [router.pathname]);
+  useEffect(() => {
     window.addEventListener("wheel", switcherAppear);
     return () => {
       window.removeEventListener("wheel", switcherAppear);
     };
   }, []);
-  useEffect(() => {
-    // Обработчик события свайпа
-    const handleSwipe = (event: TouchEvent) => {
-      const deltaY = event.touches[0].clientY - startY;
-      if (deltaY > 50) {
-        // Свайп вниз
-        setMobileSwitcherActive(false);
-      } else if (deltaY < -50) {
-        // Свайп вверх
-        setMobileSwitcherActive(true);
-      }
-    };
+  // useEffect(() => {
+  //   // Обработчик события свайпа
+  //   const handleSwipe = (event: TouchEvent) => {
+  //     const deltaY = event.touches[0].clientY - startY;
+  //     if (deltaY > 50) {
+  //       // Свайп вниз
+  //       setMobileSwitcherActive(false);
+  //     } else if (
+  //       deltaY < -50 &&
+  //       (scrollerRef.current as any).scrollTop + window.innerHeight >=
+  //         (scrollerRef.current as any)?.scrollHeight
+  //     ) {
+  //       // Свайп вверх
+  //       setMobileSwitcherActive(true);
+  //     }
+  //   };
 
-    // Переменные для отслеживания начальной точки касания
-    let startY = 0;
+  //   // Переменные для отслеживания начальной точки касания
+  //   let startY = 0;
 
-    // Добавление обработчика события свайпа
-    window.addEventListener("touchstart", (event) => {
-      startY = event.touches[0].clientY;
-    });
+  //   // Добавление обработчика события свайпа
+  //   window.addEventListener("touchstart", (event) => {
+  //     startY = event.touches[0].clientY;
+  //   });
 
-    window.addEventListener("touchmove", handleSwipe);
+  //   window.addEventListener("touchmove", handleSwipe);
 
-    return () => {
-      window.removeEventListener("touchstart", (event) => {
-        startY = event.touches[0].clientY;
-      });
-      window.removeEventListener("touchmove", handleSwipe);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("touchstart", (event) => {
+  //       startY = event.touches[0].clientY;
+  //     });
+  //     window.removeEventListener("touchmove", handleSwipe);
+  //   };
+  // }, []);
 
   const switcherAppear = (ev: WheelEvent) => {
     const gotBottom =
@@ -138,6 +146,18 @@ export default observer(function Layout({ children }: any) {
       >
         <main className={styles.leftSide} ref={scrollerRef}>
           {children}
+          <div
+            className={`${styles.switcher} ${
+              switcherActive ? styles.active : ""
+            }`}
+          >
+            <Switcher
+              label={switcherContentFormer()?.label || ""}
+              link={switcherContentFormer()?.link || "/"}
+              switcherActive={switcherActive || mobileSwitcherActive}
+              white={switcherContentFormer()?.white || false}
+            />
+          </div>
         </main>
       </motion.div>
       <div className={styles.rightSide}>
@@ -166,19 +186,6 @@ export default observer(function Layout({ children }: any) {
             }`}
           >
             <AboutLink />
-          </div>
-          <div
-            className={`${styles.switcher} ${
-              switcherActive ? styles.active : ""
-            }`}
-            onClick={() => {setSwitcherActive(false); setMobileSwitcherActive(false);}}
-          >
-            <Switcher
-              label={switcherContentFormer()?.label || ""}
-              link={switcherContentFormer()?.link || "/"}
-              switcherActive={switcherActive || mobileSwitcherActive}
-              white={switcherContentFormer()?.white || false}
-            />
           </div>
         </div>
       </div>

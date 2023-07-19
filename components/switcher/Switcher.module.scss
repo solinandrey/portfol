@@ -65,21 +65,22 @@
 
 @media screen and (max-width: 600px) {
   .switcher {
+    position: relative;
     font-size: 3.5rem;
     margin-bottom: 8rem;
-
+    margin-top: 30rem;
+    transform: translate3d(-50%, 0, 0);
+    width: max-content;
     &Text {
       padding: 1rem 2rem;
       border-radius: 1.5rem;
-    }
-    &:hover {
-      transform: translate3d(-50%, 0, 0);
     }
   }
 
   .border {
     border-radius: 1.5rem;
   }
+  
 }
 
 @keyframes grow {
