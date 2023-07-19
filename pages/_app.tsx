@@ -46,10 +46,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `,
           }}
         ></script>
-        <meta property="og:image" content={`https://andreysol.in/${metame.src}`} />
+        <meta property="og:image" content={`https://andreysol.in${metame.src}`} />
         <meta property="og:title" content="Andrey Solin | Frontend Developer" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://andreysol.in" />
+        <meta property="og:url" content="https://andreysol.in/" />
         <meta
           property="og:description"
           content="Frontend developer based in Tbilisi"
