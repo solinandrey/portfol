@@ -135,7 +135,7 @@
     transition: transform .3s $timing;
 
     .mobileSwitcherActive & {
-      transform: translate3d(0, -30rem, 0);
+      transform: translate3d(0, -50rem, 0);
     }
   }
 
