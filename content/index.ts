@@ -163,3 +163,9 @@ export const links = [
   { link: "https://t.me/soul_in", image: Telegram },
   // { link: "https://t.me/soul_in", image: IconFileCv },
 ];
+
+export const switcherLinks = [
+  {path: '/', label: 'go to projects', link: '/projects', white: false},
+  {path: '/projects', label: 'go to experience', link: '/experience', white: true},
+  {path: '/experience', label: 'go to projects', link: '/projects', white: false}
+]

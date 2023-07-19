@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { observer } from "mobx-react-lite";
 
 import styles from "./Layout.module.scss";
 import Navigation from "../navigation/Navigation";
 import ui from "@store/ui";
 import Graph from "@components/graph";
 import AboutLink from "@components/about-link";
-import { observer } from "mobx-react-lite";
+import Switcher from "@components/switcher";
+import { switcherLinks } from "@content/index";
 
 let x = 50;
 let y = 50;
@@ -19,21 +21,71 @@ interface TransitionParams {
 }
 export default observer(function Layout({ children }: any) {
   const [loaded, setLoaded] = useState(false);
+  const [switcherActive, setSwitcherActive] = useState(false);
+  const [mobileSwitcherActive, setMobileSwitcherActive] = useState(false);
+
+  const scrollerRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (window.innerWidth < 800) ui.setIsMobile(true);
     setTimeout(() => {
       setLoaded(true);
     }, 200);
-    window.addEventListener('wheel', () => {console.log('scroll')})
   }, []);
-  const router = useRouter();
+  useEffect(() => {
+    window.addEventListener("wheel", switcherAppear);
+    return () => {
+      window.removeEventListener("wheel", switcherAppear);
+    };
+  }, []);
+  useEffect(() => {
+    // Обработчик события свайпа
+    const handleSwipe = (event: TouchEvent) => {
+      const deltaY = event.touches[0].clientY - startY;
+      if (deltaY > 50) {
+        // Свайп вниз
+        setMobileSwitcherActive(false);
+      } else if (deltaY < -50) {
+        // Свайп вверх
+        setMobileSwitcherActive(true);
+      }
+    };
+
+    // Переменные для отслеживания начальной точки касания
+    let startY = 0;
+
+    // Добавление обработчика события свайпа
+    window.addEventListener("touchstart", (event) => {
+      startY = event.touches[0].clientY;
+    });
+
+    window.addEventListener("touchmove", handleSwipe);
+
+    return () => {
+      window.removeEventListener("touchstart", (event) => {
+        startY = event.touches[0].clientY;
+      });
+      window.removeEventListener("touchmove", handleSwipe);
+    };
+  }, []);
+
+  const switcherAppear = (ev: WheelEvent) => {
+    const gotBottom =
+      (scrollerRef.current as any).scrollTop + window.innerHeight >=
+      (scrollerRef.current as any)?.scrollHeight;
+    setSwitcherActive(gotBottom && ev.deltaY > 0);
+  };
 
   const p5Canvas = useRef(null);
   let transitionAnimation: TransitionParams = {
     initial: {},
     animate: {},
     exit: {},
+  };
+
+  const switcherContentFormer = () => {
+    return switcherLinks.find((item) => item.path === router.pathname);
   };
 
   const defaultTransition = ui.isMobile
@@ -43,9 +95,9 @@ export default observer(function Layout({ children }: any) {
         exit: { opacity: 0 },
       }
     : {
-        initial: { y: -30, opacity: 0, scale: 1.5 },
-        animate: { y: 0, opacity: 1, scale: 1 },
-        exit: { y: 30, opacity: 0, scale: 1.5 },
+        initial: { y: "100vh" },
+        animate: { y: 0 },
+        exit: { y: "-100vh", opacity: 0 },
       };
 
   const aboutTransition = {
@@ -64,7 +116,7 @@ export default observer(function Layout({ children }: any) {
     <div
       className={`${styles.mainLayout} ${!loaded ? styles.notLoaded : ""} ${
         router.pathname === "/" ? styles.home : ""
-      }`}
+      } ${mobileSwitcherActive ? styles.mobileSwitcherActive : ""}`}
     >
       <div
         className={styles.canvasContainer}
@@ -81,10 +133,12 @@ export default observer(function Layout({ children }: any) {
         style={{ zIndex: 1 }}
         transition={{
           type: "spring",
-          duration: 0.8,
+          duration: 1.8,
         }}
       >
-        <main className={styles.leftSide}>{children}</main>
+        <main className={styles.leftSide} ref={scrollerRef}>
+          {children}
+        </main>
       </motion.div>
       <div className={styles.rightSide}>
         <div className={styles.rightTop}>
@@ -112,6 +166,19 @@ export default observer(function Layout({ children }: any) {
             }`}
           >
             <AboutLink />
+          </div>
+          <div
+            className={`${styles.switcher} ${
+              switcherActive ? styles.active : ""
+            }`}
+            onClick={() => {setSwitcherActive(false); setMobileSwitcherActive(false);}}
+          >
+            <Switcher
+              label={switcherContentFormer()?.label || ""}
+              link={switcherContentFormer()?.link || "/"}
+              switcherActive={switcherActive || mobileSwitcherActive}
+              white={switcherContentFormer()?.white || false}
+            />
           </div>
         </div>
       </div>

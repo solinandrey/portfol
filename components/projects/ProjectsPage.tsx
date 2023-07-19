@@ -1,8 +1,8 @@
 import styles from "./Projects.module.scss";
 import ProjectItem from "@components/project-item";
-import Popup from "@components/popup";
 import { projects } from "@content/index";
 import { useState } from "react";
+import Switcher from "@components/switcher";
 
 const ProjectsPage = () => {
   const [idxOpened, setIdxOpened] = useState<number | null>(null);

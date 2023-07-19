@@ -1,9 +1,12 @@
-import AboutLink from "@components/about-link";
 import styles from "./MainPage.module.scss";
 import LinkItem from "@components/link";
 import { links } from "@content/index";
+import Switcher from "@components/switcher";
+import { useRef } from "react";
 
 const MainPage = () => {
+
+  const pageRef = useRef(null);
   return (
     <div className={styles.main}>
       <div className={styles.greeting}>
@@ -23,8 +26,8 @@ const MainPage = () => {
             />
           );
         })}
-        
       </div>
+      {/* <Switcher label='go to projects' link='/projects' ref={pageRef}/> */}
     </div>
   );
 };

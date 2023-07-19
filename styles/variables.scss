@@ -1,9 +1,10 @@
 @import './fonts/fonts.scss';
 
 $black: #121212;
-$white: #fff;
+$white: rgb(237, 237, 237);
 $paddingEdge: 1.6rem;
 $bebas: 'Bebas';
+$timing: cubic-bezier(.05,.59,.62,1.02);
 
 @mixin interNar {
   font-family: "Inter";

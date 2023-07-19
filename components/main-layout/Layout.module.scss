@@ -105,6 +105,10 @@
   }
 }
 
+.switcher {
+  z-index: 1;
+}
+
 @media screen and (max-width: 768px){
   .rightSide {
     padding-right: 4rem;
@@ -128,6 +132,11 @@
     padding-right: 2rem;
     padding-bottom: 15rem;
     padding: 10rem 2rem 25rem 2rem;
+    transition: transform .3s $timing;
+
+    .mobileSwitcherActive & {
+      transform: translate3d(0, -30rem, 0);
+    }
   }
 
   .aboutLink {
