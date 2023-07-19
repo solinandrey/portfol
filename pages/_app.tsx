@@ -14,6 +14,7 @@ import favicon16 from "@images/favicon-16x16.png";
 import appleTouch from "@images/apple-touch-icon.png";
 import safariPinned from "@images/safari-pinned-tab.svg";
 import me from "@images/me.jpg";
+import metame from "@images/metame.png"
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // const { global } = pageProps;
@@ -45,7 +46,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `,
           }}
         ></script>
-        <meta property="og:image" content={me.src} />
+        <meta property="og:image" content={metame.src} />
         <meta property="og:title" content="Andrey Solin | Frontend Developer" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://andreysol.in/" />
