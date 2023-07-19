@@ -3,8 +3,9 @@ import Instagram from "@images/instagram.png";
 import Telegram from "@images/telegram.png";
 import Fleet from "@images/fleet.png";
 import Rasu from "@images/rasu.jpg";
-import Drigmatic from "@images/drigmatic.jpg"
-import {IconFileCv} from "@tabler/icons-react";
+import Drigmatic from "@images/drigmatic.jpg";
+import Ruvento from "@images/ruvento.png";
+import { IconFileCv } from "@tabler/icons-react";
 
 export const projects = [
   {
@@ -30,10 +31,18 @@ export const projects = [
       <li>Working with data visualization in different formats (tables, graphs, charts)</li>
       <li>Working with forms</li>
     </ul>
-    <br/>
-    <br/>
-    <br/>
   </div>`,
+  },
+  {
+    name: "Ruvento Ventures Website",
+    link: "https://www.ruvento.com/",
+    description: "A website for an investment fund",
+    image: Ruvento.src,
+    tags: ["React", "Next JS", "TypeScript", "SCSS", "Strapi", "AWS", "Vercel"],
+    fullDesc: `<p>This project involved utilizing various technologies and frameworks, including Next.js and Strapi CMS.</p>
+    <p>The website serves as a platform for the investment fund to showcase its services, provide information about its portfolio, and engage with potential investors. With Next.js, I ensured a smooth and efficient user experience by implementing server-side rendering and optimizing the website for performance.</p>
+    <p>To manage the content and data on the website, I integrated Strapi CMS. This allowed the customer to easily update and maintain the website's content, such as adding or modifying investment offerings, news updates, and team member profiles.</p>
+    <p>The website serves as a platform for the investment fund to showcase its services, provide information about its portfolio, and engage with potential investors. With Next.js, I ensured a smooth and efficient user experience by implementing server-side rendering and optimizing the website for performance.</p>`,
   },
   {
     name: "ROSATOM AUTOMATED CONTROL SYSTEMS",
@@ -52,9 +61,11 @@ export const projects = [
   },
   {
     name: "Absolut Insurance",
-    link: "https://www.absolutins.ru/",     description: "Website for insurance company Absolut",
+    link: "https://www.absolutins.ru/",
+    description: "Website for insurance company Absolut",
     image: "",
-    video: "https://player.vimeo.com/video/766458572?h=ee71c4bd8f&title=0&byline=0&portrait=0",
+    video:
+      "https://player.vimeo.com/video/766458572?h=ee71c4bd8f&title=0&byline=0&portrait=0",
     tags: ["Vue JS", "Nuxt JS", "Stylus", "GSAP", "TypeScript", "Lottie"],
     fullDesc: `
     <p>On this project I was leading frontend team of 5 devs</p>
@@ -67,7 +78,7 @@ export const projects = [
     <p>Website also has admin panel from which data is collected through REST API</p>
     <p>Nuxt JS was picked as framework</p>
     <p>Project was made during my great times in <a href="https://beta.agency" target="_blank">Beta Agency</a></p>
-    `
+    `,
   },
   {
     name: "SIBUR DIGITAL",
@@ -94,7 +105,7 @@ export const projects = [
     fullDesc: `<p>Project was made during my freelancing time</p>
     <p>Mostly I used Vue on this project</p><p>Color reverse effect was made by using mix-blend-mode property</p><p>Horizontal scrolling effect in a middle of main page was made with GSAP plugin</p>
     <p>Hearts in top right corner tracks scroll progress</p>
-    <p>Also used Intersection Observer for footer animation with interacts with scrolling</p>`
+    <p>Also used Intersection Observer for footer animation with interacts with scrolling</p>`,
   },
 ];
 
@@ -165,7 +176,17 @@ export const links = [
 ];
 
 export const switcherLinks = [
-  {path: '/', label: 'go to projects', link: '/projects', white: false},
-  {path: '/projects', label: 'go to experience', link: '/experience', white: true},
-  {path: '/experience', label: 'go to projects', link: '/projects', white: false}
-]
+  { path: "/", label: "go to projects", link: "/projects", white: false },
+  {
+    path: "/projects",
+    label: "go to experience",
+    link: "/experience",
+    white: true,
+  },
+  {
+    path: "/experience",
+    label: "go to projects",
+    link: "/projects",
+    white: false,
+  },
+];
