@@ -1,0 +1,27 @@
+:root {
+  --bg: #0b0b0c;
+  --ink: #ece9e3;
+  --dim: rgba(236, 233, 227, 0.5);
+  --hair: rgba(236, 233, 227, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}

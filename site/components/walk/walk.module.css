@@ -1,0 +1,225 @@
+.canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.track {
+  position: relative;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hud {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.hud a {
+  pointer-events: auto;
+}
+
+.top {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.name {
+  color: var(--ink);
+}
+
+.what {
+  color: var(--dim);
+}
+
+.mail {
+  margin-left: auto;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair);
+}
+
+.mail:hover {
+  border-color: var(--ink);
+}
+
+.cardWrap {
+  align-self: center;
+  max-width: 420px;
+  transition: opacity 0.2s linear;
+}
+
+.card {
+  animation: cardIn 0.7s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+.years {
+  font-size: clamp(44px, 6vw, 88px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+.place {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.role {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.line {
+  margin: 18px 0 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.stack {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--dim);
+}
+
+.outro {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  top: 96px;
+  opacity: 0;
+  max-width: 640px;
+}
+
+.outro p {
+  margin: 0;
+  font-size: clamp(28px, 3.6vw, 52px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.links {
+  margin-top: 22px;
+  display: flex;
+  gap: 18px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair);
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: 84px;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+  transition: opacity 0.4s ease;
+}
+
+.timeline {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.bar {
+  height: 1px;
+  background: var(--hair);
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--p, 0) * 100%);
+  background: var(--ink);
+}
+
+.timeline ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--dim);
+}
+
+.timeline li {
+  transition: color 0.3s ease;
+}
+
+.timeline li.on {
+  color: var(--ink);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .hud {
+    padding: 16px;
+  }
+  .what {
+    display: none;
+  }
+  .cardWrap {
+    align-self: end;
+    margin-bottom: 18px;
+  }
+  .years {
+    font-size: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+}

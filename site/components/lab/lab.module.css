@@ -1,0 +1,64 @@
+.lab {
+  position: fixed;
+  inset: 0;
+  --fg: #ece9e3;
+  --line: rgba(236, 233, 227, 0.22);
+}
+
+.lab:not([data-dark]) {
+  --fg: #141414;
+  --line: rgba(20, 20, 20, 0.22);
+}
+
+.panel {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: grid;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg);
+}
+
+.title {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.group span {
+  width: 48px;
+  opacity: 0.6;
+}
+
+.group button {
+  font: inherit;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 11px;
+  cursor: pointer;
+}
+
+.group button.on {
+  background: var(--fg);
+  color: #0b0b0c;
+  border-color: var(--fg);
+}
+
+.lab:not([data-dark]) .group button.on {
+  color: #f2f0ec;
+}
+
+.group button:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 2px;
+}
