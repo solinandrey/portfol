@@ -11,3 +11,5 @@ next-env.d.ts
 public/models/*.ply
 public/models/me-*.glb
 public/models/body-*.glb
+# исходники фотографий для /about: в репозиторий идут только нарезанные файлы из public/photos
+photos/

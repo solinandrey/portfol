@@ -31,7 +31,7 @@ export function Hud({ active, ready }: { active: number; ready: boolean }) {
   return (
     <div className={styles.hud}>
       <header className={styles.top}>
-        <span className={styles.name}>Andrei Solin</span>
+        <span className={styles.name}>Andrey Solin</span>
         <span className={styles.what}>Product designer · ex-senior frontend</span>
         <a className={styles.mail} href="mailto:solinandrey@gmail.com">
           solinandrey@gmail.com

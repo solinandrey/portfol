@@ -35,7 +35,7 @@ export type Stage = {
 export const STAGES: Stage[] = [
   {
     id: "12digital",
-    years: "2018",
+    years: "2017 — 2018",
     place: "12 Digital",
     role: "Junior frontend developer",
     stack: "HTML · CSS · jQuery · Vue",

@@ -1,9 +1,15 @@
-import { Walk } from "@/components/walk/Walk";
+import { DotsStory } from "@/components/dots/DotsStory";
+import { PORTRAITS } from "@/lib/portrait";
 
 export default function Home() {
   return (
     <main>
-      <Walk />
+      {/* портрет начинает качаться вместе со страницей, не дожидаясь скриптов сайта: свой файл
+          для телефона, планшета и компьютера. Приоритет низкий, чтобы не отбирать канал у скриптов */}
+      {PORTRAITS.map((p) => (
+        <link key={p.file} rel="preload" as="fetch" href={p.file} media={p.media} crossOrigin="anonymous" fetchPriority="low" />
+      ))}
+      <DotsStory />
     </main>
   );
 }
