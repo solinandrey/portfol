@@ -1,0 +1,11 @@
+/* текст есть в документе и читается вслух, но на экране его нет: место и прокрутку он не занимает */
+.outline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

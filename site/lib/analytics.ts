@@ -34,7 +34,13 @@ export function startAnalytics() {
   if (started) return;
   started = true;
   if (!enabled()) return;
-  import("posthog-js").then(({ default: posthog }) => {
+  // Страну PostHog в этом режиме не определяет: берём её у своего сервера (app/api/where).
+  // Ждём не дольше полутора секунд: без страны события лучше, чем никаких
+  const where = Promise.race([
+    fetch("/api/where").then((r) => r.json() as Promise<{ country: string | null; city: string | null }>),
+    new Promise<null>((resolve) => window.setTimeout(() => resolve(null), 1500)),
+  ]).catch(() => null);
+  Promise.all([import("posthog-js"), where]).then(([{ default: posthog }, place]) => {
     posthog.init(KEY, {
       api_host: "/ingest",
       ui_host: "https://eu.posthog.com",
@@ -50,10 +56,21 @@ export function startAnalytics() {
       capture_dead_clicks: false,
       capture_exceptions: false,
       advanced_disable_flags: true,
+      // свойства визита ставятся до первого события, чтобы они были и у самого просмотра страницы
+      loaded: (ph) => {
+        // страна и город идут под теми же именами, что ставит сам PostHog: его отчёты по странам работают как обычно
+        if (place?.country) {
+          let name: string | undefined;
+          try {
+            name = new Intl.DisplayNames(["en"], { type: "region" }).of(place.country);
+          } catch {}
+          ph.register({ $geoip_country_code: place.country, $geoip_country_name: name, $geoip_city_name: place.city });
+        }
+        // ссылка с меткой (?from=…) помечает все события визита: видно, кому она была отправлена
+        const from = new URLSearchParams(window.location.search).get("from");
+        if (from) ph.register({ from: from.slice(0, 60) });
+      },
     });
-    // ссылка с меткой (?from=…) помечает все события визита: видно, кому она была отправлена
-    const from = new URLSearchParams(window.location.search).get("from");
-    if (from) posthog.register({ from: from.slice(0, 60) });
     client = posthog;
     for (const item of queue.splice(0)) item[0] === "register" ? posthog.register(item[1]) : posthog.capture(item[1], item[2]);
   });
