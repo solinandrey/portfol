@@ -6,6 +6,7 @@ import { useFrame, type ThreeEvent } from "@react-three/fiber";
 import { Font, type FontData } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 import { CHAPTERS, EMAIL, INTRO } from "@/lib/story";
+import { track, trackOnce } from "@/lib/analytics";
 import { between, boxHit, COMMON, DISC_HEIGHT, DISC_RADIUS, DRUM_FLOOR, DRUM_RADIUS, INK, PAPER, stacked, TILT, type Stage } from "./paper";
 import type { Shared } from "./Cloud";
 
@@ -487,6 +488,7 @@ export function Drum({ shared, stage }: { shared: RefObject<Shared>; stage: Stag
       tip.current.at = letter;
       tip.current.until = performance.now() + 1800;
       say("Copied");
+      track("email_copied", { place: letter.copy ? "icon" : "letters" });
     };
     // буфер обмена есть не везде: в старых браузерах и вне https адрес копируется через скрытое поле
     if (navigator.clipboard?.writeText) return void navigator.clipboard.writeText(EMAIL).then(done, () => {});
@@ -557,7 +559,9 @@ export function Drum({ shared, stage }: { shared: RefObject<Shared>; stage: Stag
     // нажали и сразу отпустили, не сдвинув, — это клик: по почте или по знаку рядом он копирует адрес
     const press = tip.current.press;
     tip.current.press = null;
-    if (press && press.letter === letter && letter.mail && performance.now() - press.t < 400 && Math.hypot(e.nativeEvent.clientX - press.x, e.nativeEvent.clientY - press.y) < 6) copy(letter);
+    const moved = press ? Math.hypot(e.nativeEvent.clientX - press.x, e.nativeEvent.clientY - press.y) : 0;
+    if (press && press.letter === letter && letter.mail && performance.now() - press.t < 400 && moved < 6) copy(letter);
+    if (moved > 12) trackOnce("letter_dragged", { on_email: !!letter.mail });
     // отпустили — падает как висела; на что приземлится, на то и ляжет
     letter.held = false;
     letter.hopVel = 0;

@@ -7,6 +7,7 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { CHAPTERS, CONTACTS } from "@/lib/story";
 import { CONTACT_ICONS } from "@/lib/contact-icons";
+import { track, trackOnce } from "@/lib/analytics";
 import { boxHit, COMMON, INK, ORANGE, PAPER, stacked, type Stage } from "./paper";
 import type { Shared } from "./Cloud";
 
@@ -279,7 +280,9 @@ export function Chips({ shared, stage }: { shared: RefObject<Shared>; stage: Sta
       // не тащили — значит, клик: чип переворачивается; бросили — крутится от скорости
       c.flipVel += c.moved < 5 ? 15 : clamp(c.vel.length() * 7, 0, 22);
       // у контакта клик ещё и открывает ссылку: почту здесь же, остальное в новой вкладке
+      if (c.moved >= 5) trackOnce("chip_dragged", { chip: c.key });
       if (c.href && c.moved < 5) {
+        track("contact_clicked", { channel: c.key.replace("contact-", ""), place: "chip" });
         if (c.href.startsWith("mailto:")) window.location.href = c.href;
         else window.open(c.href, "_blank", "noopener,noreferrer");
       }

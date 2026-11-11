@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@/lib/analytics";
 import { useEffect, useRef, useState } from "react";
 import type { Project } from "@/lib/story";
 import { Rise } from "./Effects";
@@ -115,7 +116,7 @@ export function CaseSheet({ project, list, tone, onPick, onClose }: Props) {
               </div>
               <div className={styles.caseFoot}>
                 {shown.href && (
-                  <a href={shown.href} target="_blank" rel="noreferrer">
+                  <a href={shown.href} target="_blank" rel="noreferrer" onClick={() => track("project_link_clicked", { project: shown.label, place: "case" })}>
                     {onVimeo ? "Watch on Vimeo" : "Open the site"} <span aria-hidden>↗</span>
                   </a>
                 )}

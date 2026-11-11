@@ -6,6 +6,7 @@ import { Canvas } from "@react-three/fiber";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { CHAPTERS, CONTACTS, EMAIL, THESIS, type Project } from "@/lib/story";
+import { remember, startAnalytics, track, trackOnce } from "@/lib/analytics";
 import { CaseSheet } from "./CaseSheet";
 import type { Shared } from "./Cloud";
 import { Scene } from "./Scene";
@@ -17,6 +18,8 @@ import styles from "./dots.module.css";
 // Стрелки, кнопка «дальше», подписи и бегунок внизу ведут туда же.
 
 const STOPS = CHAPTERS.length + 2;
+/** имена остановок для аналитики */
+const STOP_IDS = ["intro", ...CHAPTERS.map((c) => c.id), "contact"];
 const LAST = STOPS - 1;
 const VH_PER_STOP = 120;
 /** сколько прокрутить колёсиком или трекпадом, чтобы уйти с остановки; пальцем — меньше */
@@ -59,6 +62,49 @@ export function DotsStory() {
   const caseOpen = useRef(false);
   const closeCase = useCallback(() => setOpened(null), []);
   const onReady = useCallback(() => setReady(true), []);
+
+  // Аналитика: как пришли на остановку (via), сколько пробыли на прошлой и как далеко дошли.
+  // Подключается, когда сцена собралась; если за шесть секунд не собралась, визит всё равно учтётся
+  const seenStop = useRef({ via: "load", at: 0, max: 0, last: -1 });
+  useEffect(() => {
+    const late = window.setTimeout(startAnalytics, 6000);
+    return () => window.clearTimeout(late);
+  }, []);
+  useEffect(() => {
+    if (!ready) return;
+    startAnalytics();
+    const small = window.matchMedia("(max-aspect-ratio: 6/5)").matches;
+    track("scene_ready", { ms: Math.round(performance.now()), layout: small ? (window.innerWidth < 600 ? "phone" : "tablet") : "wide", width: window.innerWidth, height: window.innerHeight, dpr: window.devicePixelRatio, reduced_motion: window.matchMedia("(prefers-reduced-motion: reduce)").matches });
+  }, [ready]);
+  useEffect(() => {
+    const s = seenStop.current;
+    if (!ready || s.last === stop) return;
+    // остановка засчитывается, если на ней задержались: когда по линии хронологии перескакивают
+    // через несколько глав, промежуточные мелькают на долю секунды и в отчёт не идут
+    const timer = window.setTimeout(
+      () => {
+        const now = performance.now();
+        s.max = Math.max(s.max, stop);
+        remember({ last_stop: STOP_IDS[stop], max_stop: s.max });
+        track("stop_viewed", { stop, stop_id: STOP_IDS[stop], via: s.via, previous: s.last < 0 ? null : STOP_IDS[s.last], previous_seconds: s.last < 0 ? null : Math.round((now - s.at) / 1000), max_stop: s.max });
+        s.last = stop;
+        s.at = now;
+        s.via = "scroll";
+      },
+      s.last < 0 ? 0 : 900,
+    );
+    return () => window.clearTimeout(timer);
+  }, [stop, ready]);
+  useEffect(() => {
+    if (opened) track("case_opened", { project: opened.label, stop_id: STOP_IDS[stop] });
+    // stop здесь только подпись к событию: открытие разбора от смены остановки не зависит
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [opened]);
+  /** перейти и запомнить, чем: кнопкой, линией хронологии, клавишей */
+  const goVia = (via: string, target: number) => {
+    seenStop.current.via = via;
+    goTo(target);
+  };
 
   /** середины подписей остановок от левого края линии, в пикселях: бегунок встаёт ровно над серединой текста */
   const marks = useRef<number[]>([]);
@@ -235,7 +281,7 @@ export function DotsStory() {
         sh.pulse.x = (e.clientX / window.innerWidth) * 2 - 1;
         sh.pulse.y = -(e.clientY / window.innerHeight) * 2 + 1;
         sh.pulse.n++;
-      }
+      } else if (Math.abs(sh.twist) > 0.15) trackOnce("model_rotated");
       press = null;
       // давно не двигали — отпускаем без броска
       if (performance.now() - turn.t > 80) sh.twistVel = 0;
@@ -260,7 +306,10 @@ export function DotsStory() {
       const tag = (document.activeElement as HTMLElement | null)?.tagName;
       if (e.key === " " && (tag === "BUTTON" || tag === "A")) return;
       e.preventDefault();
-      if (!n.moving) goTo(Math.round(stationNow()) + (next ? 1 : -1));
+      if (!n.moving) {
+        seenStop.current.via = "key";
+        goTo(Math.round(stationNow()) + (next ? 1 : -1));
+      }
     };
     window.addEventListener("keydown", onKey);
 
@@ -305,6 +354,8 @@ export function DotsStory() {
       if (!ready) return;
       e.currentTarget.setPointerCapture(e.pointerId);
       nav.current.scrub = true;
+      seenStop.current.via = "scrub";
+      trackOnce("timeline_scrubbed");
       setScrubbing(true);
       scrubTo(e.clientX);
     },
@@ -398,12 +449,12 @@ export function DotsStory() {
 
       <div className={styles.hud} data-ready={ready || undefined}>
         <header className={styles.top}>
-          <button type="button" className={styles.home} onClick={() => goTo(0)}>
+          <button type="button" className={styles.home} onClick={() => goVia("home", 0)}>
             Andrey Solin
           </button>
           <nav className={styles.contacts}>
             {CONTACTS.map((c) => (
-              <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+              <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" onClick={() => track("contact_clicked", { channel: c.label, place: "header" })}>
                 {c.label}
               </a>
             ))}
@@ -421,7 +472,7 @@ export function DotsStory() {
               </p>
               {/* что делать дальше — там же, где читают: кнопка и подсказка про скролл */}
               <div className={styles.begin}>
-                <button type="button" className={styles.start} onClick={() => goTo(1)} disabled={!ready}>
+                <button type="button" className={styles.start} onClick={() => goVia("start", 1)} disabled={!ready}>
                   Start at 2017 <span aria-hidden>↓</span>
                 </button>
                 <span className={styles.beginHint} aria-hidden>
@@ -479,7 +530,7 @@ export function DotsStory() {
                               <span className={styles.projectTag}>case</span>
                             </button>
                           ) : l.href ? (
-                            <a href={l.href} target="_blank" rel="noreferrer" {...peek(l.image)}>
+                            <a href={l.href} target="_blank" rel="noreferrer" onClick={() => track("project_link_clicked", { project: l.label, place: "list" })} {...peek(l.image)}>
                               {l.label}
                               <span className={styles.projectTag} aria-hidden>
                                 ↗
@@ -509,15 +560,15 @@ export function DotsStory() {
         {/* куда идти дальше сказано словами, а не только стрелкой */}
         <div className={styles.next}>
           {stop === 0 ? null : upcoming ? (
-            <button type="button" className={styles.nextButton} onClick={() => goTo(stop + 1)}>
+            <button type="button" className={styles.nextButton} onClick={() => goVia("next", stop + 1)}>
               Next: {upcoming.place} <span aria-hidden>↓</span>
             </button>
           ) : stop < LAST ? (
-            <button type="button" className={styles.nextButton} onClick={() => goTo(LAST)}>
+            <button type="button" className={styles.nextButton} onClick={() => goVia("next", LAST)}>
               Next: get in touch <span aria-hidden>↓</span>
             </button>
           ) : (
-            <button type="button" className={styles.nextButton} onClick={() => goTo(0)}>
+            <button type="button" className={styles.nextButton} onClick={() => goVia("back", 0)}>
               Back to start <span aria-hidden>↑</span>
             </button>
           )}
@@ -554,7 +605,7 @@ export function DotsStory() {
           </div>
           <ol>
             <li>
-              <button type="button" className={styles.stop} data-on={stop === 0 || undefined} onClick={() => goTo(0)}>
+              <button type="button" className={styles.stop} data-on={stop === 0 || undefined} onClick={() => goVia("timeline", 0)}>
                 <span className={styles.stopLabel} data-mark>
                   <span className={styles.stopYear}>Hi</span>
                   <span className={styles.stopName}>Intro</span>
@@ -563,7 +614,7 @@ export function DotsStory() {
             </li>
             {CHAPTERS.map((c, i) => (
               <li key={c.id}>
-                <button type="button" className={styles.stop} data-on={stop === i + 1 || undefined} aria-current={stop === i + 1 ? "step" : undefined} onClick={() => goTo(i + 1)}>
+                <button type="button" className={styles.stop} data-on={stop === i + 1 || undefined} aria-current={stop === i + 1 ? "step" : undefined} onClick={() => goVia("timeline", i + 1)}>
                   <span className={styles.stopLabel} data-mark>
                     <span className={styles.stopYear}>{short(c.years)}</span>
                     <span className={styles.stopName}>{c.place}</span>
@@ -572,7 +623,7 @@ export function DotsStory() {
               </li>
             ))}
             <li>
-              <button type="button" className={styles.stop} data-on={stop === LAST || undefined} onClick={() => goTo(LAST)}>
+              <button type="button" className={styles.stop} data-on={stop === LAST || undefined} onClick={() => goVia("timeline", LAST)}>
                 <span className={styles.stopLabel} data-mark>
                   <span className={styles.stopYear}>Now</span>
                   <span className={styles.stopName}>Contact</span>

@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@/lib/analytics";
 import { memo, useMemo, useRef, type RefObject } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Chips } from "./Chips";
@@ -44,6 +45,8 @@ export const Scene = memo(function Scene({ shared, onStation, onReady }: Props) 
     q.time = 0;
     q.frames = 0;
     const set = (level: number) => {
+      // сцену упростили, потому что устройство не держит кадры: видно, у кого сайт идёт тяжело
+      if (level > q.level) track("quality_lowered", { level, dpr: q.levels![level][0], points_share: q.levels![level][1] });
       q.level = level;
       state.setDpr(q.levels![level][0]);
       stage.keep = q.levels![level][1];
