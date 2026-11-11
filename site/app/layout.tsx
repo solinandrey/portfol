@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/" },
+  // подтверждение владения сайтом для Google Search Console
+  verification: { google: "2MzYPagGj9dXDdG-DU_fOKuxhw_umWxI-XP06WYlMPU" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/", type: "website", siteName: "Andrey Solin" },
 };
 
